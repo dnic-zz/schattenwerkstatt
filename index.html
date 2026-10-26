@@ -205,6 +205,29 @@ select.wrong, .sortrow.wrong { outline: 2px solid var(--warn); }
 .mc label.wrong { outline: 2px solid var(--warn); }
 .mc input { margin-top: 5px; accent-color: var(--lamp); }
 
+/* Aufgaben in Schritten, Satzbausteine, Erklärkette */
+.steps { margin: 6px 0 6px; padding-left: 22px; display: flex; flex-direction: column; gap: 3px; }
+.steplist { list-style: none; padding: 0; margin: 8px 0 0; display: flex; flex-direction: column; gap: 4px; }
+.steplist li.ok { color: var(--ok); }
+.steplist li.warn { color: var(--warn); }
+.slotrow { display: grid; grid-template-columns: 4.2rem minmax(0, 1fr) auto; gap: 8px; align-items: center; margin-bottom: 8px; }
+.slot { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; min-height: 46px; padding: 6px 8px; border: 2px dashed var(--line); border-radius: 8px; cursor: pointer; }
+.slot.active { border-color: var(--lamp); background: var(--lamp-soft); }
+.slot.right { border-style: solid; border-color: var(--ok); }
+.slot.wrong { border-style: solid; border-color: var(--warn); }
+.btn.small { padding: 4px 10px; font-size: 0.85rem; }
+.chain { display: flex; flex-direction: column; gap: 6px; counter-reset: k; min-height: 52px; padding: 8px; border: 2px dashed var(--line); border-radius: 8px; }
+.chain.right { border-style: solid; border-color: var(--ok); }
+.chain.wrong { border-style: solid; border-color: var(--warn); }
+.cardbank { display: flex; flex-direction: column; gap: 6px; }
+.card-chip { text-align: left; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 8px 12px; cursor: pointer; font: inherit; }
+.chain .card-chip { background: var(--lamp-soft); }
+.chain .card-chip::before { counter-increment: k; content: counter(k) ". "; font-weight: 700; color: var(--lamp-ink); }
+.modes { align-self: flex-start; flex-wrap: wrap; }
+.modes button { padding: 8px 14px; font-size: 0.95rem; }
+.obs select { padding: 4px 6px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); max-width: 100%; }
+@media (max-width: 560px) { .slotrow { grid-template-columns: 1fr; } }
+
 /* A4 */
 .handle { cursor: grab; }
 .pt { cursor: pointer; }
@@ -354,30 +377,27 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
 
 <!-- A3 -->
 <section class="card" id="a3">
-  <div class="card-head"><h2>3 · Groß oder klein, scharf oder unscharf?</h2><span class="tag afb2">AFB II</span><span class="kchip">K6</span></div>
+  <div class="card-head"><h2>3 · Groß oder klein?</h2><span class="tag afb2">AFB II</span><span class="kchip">K6</span></div>
   <p class="goal"><b>Ich kann</b> die Größe von Schattenbildern in Abhängigkeit vom Abstand erklären.</p>
-  <p class="instr"><b>Untersuche:</b> Schiebe die Figur zwischen Lampe und Leinwand hin und her. Beobachte Größe und Rand des Schattenbilds. Die Lampe ist kein Punkt, sondern hat eine Fläche – darum kann der Rand unscharf werden.</p>
+  <div class="instr"><b>Deine Aufgabe:</b>
+    <ol class="steps">
+      <li><b>Messen:</b> Schiebe die Figur <i>nah an die Lampe</i>, <i>in die Mitte</i> und <i>weit weg</i>. Klicke jedes Mal auf „Messwert übernehmen“.</li>
+      <li><b>Je-desto-Sätze:</b> Klicke aus den Bausteinen zwei Sätze zusammen, die zu deiner Tabelle passen.</li>
+      <li><b>Anwenden:</b> Beantworte die Fragen zum Schattentheater.</li>
+    </ol>
+    Die Lampe ist hier ein Punkt: <b class="a-die">die</b> punktförmige Licht<u>quelle</u>. Wie echte Lampen wirken, untersuchst du in Übung 5.
+  </div>
   <div class="fig">
-    <svg viewBox="0 0 600 240" id="simsvg" role="img" aria-label="Simulation: Schattenbild auf einer Leinwand">
-      <defs>
-        <clipPath id="screenclip"><rect x="0" y="0" width="600" height="240"/></clipPath>
-        <linearGradient id="shGrad" x1="0" y1="0" x2="0" y2="1" gradientUnits="userSpaceOnUse">
-          <stop id="g0" offset="0" stop-color="var(--shade)" stop-opacity="0"/>
-          <stop id="g1" offset="0.3" stop-color="var(--shade)" stop-opacity="1"/>
-          <stop id="g2" offset="0.7" stop-color="var(--shade)" stop-opacity="1"/>
-          <stop id="g3" offset="1" stop-color="var(--shade)" stop-opacity="0"/>
-        </linearGradient>
-      </defs>
+    <svg viewBox="0 0 600 240" id="simsvg" role="img" aria-label="Simulation: Figur zwischen punktförmiger Lampe und Leinwand">
+      <defs><clipPath id="screenclip"><rect x="0" y="0" width="600" height="240"/></clipPath></defs>
       <g clip-path="url(#screenclip)">
-        <polygon id="simCone" fill="var(--lamp-soft)"/>
-        <polygon id="simPen" fill="var(--shade)" opacity="0.18"/>
-        <polygon id="simUmb" fill="var(--shade)" opacity="0.4"/>
+        <polygon id="simCone" fill="var(--light-area)"/>
+        <polygon id="simUmb" fill="var(--shade)" opacity="0.45"/>
         <rect x="560" y="0" width="18" height="240" fill="var(--screen)" stroke="var(--muted)"/>
-        <rect id="simShadow" x="560" width="18" fill="url(#shGrad)"/>
+        <rect id="simShadow" x="560" width="18" fill="var(--shade)"/>
       </g>
-      <rect x="28" y="106" width="10" height="28" rx="2" fill="var(--muted)"/>
-      <rect id="simLamp" x="36" y="106" width="8" height="28" rx="3" fill="var(--lamp)"/>
-      <g id="simFig"><rect x="-5" y="92" width="10" height="56" rx="3" fill="var(--ink)"/><circle cx="0" cy="88" r="9" fill="var(--ink)"/></g>
+      <circle cx="40" cy="120" r="7" fill="var(--lamp)" stroke="var(--ink)" stroke-width="1.5"/>
+      <g id="simFig"><circle cx="0" cy="98" r="8" fill="var(--ink)"/><rect x="-5" y="106" width="10" height="44" rx="3" fill="var(--ink)"/></g>
       <text x="569" y="234" text-anchor="middle" font-size="12" style="fill:var(--muted)">Leinwand</text>
     </svg>
   </div>
@@ -388,15 +408,16 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   </div>
   <div class="readout" id="simRead"></div>
 
-  <h3>Satzbaukasten</h3>
-  <p class="builder">Je
-    <select id="b1" aria-label="näher oder weiter"><option value="">…</option><option>näher</option><option>weiter</option></select>
-    der Gegenstand an der Lichtquelle steht, desto
-    <select id="b2" aria-label="größer oder kleiner"><option value="">…</option><option>größer</option><option>kleiner</option></select>
-    und
-    <select id="b3" aria-label="schärfer oder unschärfer"><option value="">…</option><option>schärfer</option><option>unschärfer</option></select>
-    ist das Schattenbild.
-  </p>
+  <h3>Schritt 1 · Messen</h3>
+  <div class="actions"><button class="btn ghost" id="a3take">Messwert übernehmen</button><span class="meta" id="a3takeMsg"></span></div>
+  <div class="tablewrap"><table class="stand meas" id="a3table"></table></div>
+
+  <h3>Schritt 2 · Je-desto-Sätze</h3>
+  <p class="goal">Klicke auf eine Satzzeile und dann auf die Bausteine. Ein Klick auf einen Baustein in der Zeile nimmt ihn wieder heraus.</p>
+  <div id="a3slots"></div>
+  <div class="wordbank" id="a3bank"><span class="lbl">Bausteine</span></div>
+
+  <h3>Schritt 3 · Anwenden</h3>
   <div class="mc" id="a3mc"></div>
   <div class="actions"><button class="btn" id="a3check">Prüfen</button><button class="btn tip" id="a3tip">Tipp</button></div>
   <div id="a3fb"></div>
@@ -425,18 +446,27 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   <div id="a4fb"></div>
 </section>
 
-<!-- A5 Kern- und Halbschatten (Block 3) -->
+<!-- A5 Wirklichkeit: ausgedehnte Lichtquellen (Block 3) -->
 <section class="card" id="a5">
-  <div class="card-head"><h2>5 · Kernschatten und Halbschatten</h2><span class="tag afb2">AFB II</span><span class="kchip">K8</span><span class="kchip">Block 3</span></div>
-  <p class="goal"><b>Ich kann</b> Kernschatten und Halbschatten bei mehreren Lichtquellen unterscheiden.</p>
-  <p class="instr"><b>Untersuche:</b> Stelle den Regler nacheinander auf <i>Punktlampe</i>, <i>zwei Lampen</i> und <i>breite Lampe</i>. Vergleiche jedes Mal das Schattenbild auf der Leinwand. Mit „Randstrahlen zeigen“ siehst du, wie das Licht jeder Lampe am Gegenstand vorbeigeht.<br>
-    Neue Wörter: <b class="a-der">der</b> Kern<u>schatten</u>, <b class="a-der">der</b> Halb<u>schatten</u> – beide von <i>der Schatten</i>.</p>
+  <div class="card-head"><h2>5 · Wie ist es in Wirklichkeit?</h2><span class="tag afb2">AFB II</span><span class="kchip">K8</span><span class="kchip">Block 3</span></div>
+  <p class="goal"><b>Ich kann</b> Kernschatten und Halbschatten unterscheiden und erklären, warum der Rand eines Schattenbilds unscharf wird.</p>
+  <div class="instr">In Übung 3 war die Lampe ein Punkt. Echte Lampen und die Sonne haben aber eine Fläche: <b class="a-die">die</b> ausgedehnte Licht<u>quelle</u>. Was ändert das?
+    <ol class="steps">
+      <li><b>Vergleichen:</b> Klicke nacheinander auf die drei Lichtquellen und fülle die Beobachtungstabelle aus.</li>
+      <li><b>Beschriften:</b> Wähle <i>zwei Lichtquellen</i> und beschrifte A bis D auf der Leinwand.</li>
+      <li><b>Erklären:</b> Lege aus den Satzkarten eine Erklärung. Zwei Karten gehören nicht dazu.</li>
+      <li><b>Abstand:</b> Wähle die ausgedehnte Lichtquelle, verschiebe die Figur und ergänze den Je-desto-Satz.</li>
+      <li><b>Übertragen:</b> Beantworte die Frage zur Sonne.</li>
+    </ol>
+    Neue Wörter: <b class="a-der">der</b> Kern<u>schatten</u>, <b class="a-der">der</b> Halb<u>schatten</u> – beide von <i>der Schatten</i>.
+  </div>
+  <div class="seg modes" id="a5modes" role="group" aria-label="Lichtquelle wählen"></div>
   <div class="fig">
-    <svg viewBox="0 0 600 260" id="a5svg" role="img" aria-label="Simulation: Lampe, Gegenstand und Leinwand mit Kern- und Halbschatten">
+    <svg viewBox="0 0 600 260" id="a5svg" role="img" aria-label="Simulation: Lichtquelle, Figur und Leinwand mit Kern- und Halbschatten">
       <rect x="50" y="0" width="510" height="260" fill="var(--light-area)"/>
       <g id="a5shadows"></g>
       <g id="a5rays"></g>
-      <rect x="244" y="105" width="12" height="50" rx="2" fill="var(--ink)"/>
+      <rect id="a5obj" x="244" y="105" width="12" height="50" rx="2" fill="var(--ink)"/>
       <g id="a5screen"></g>
       <g id="a5lamps"></g>
       <g id="a5marks"></g>
@@ -444,29 +474,33 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
     </svg>
   </div>
   <div class="sim-controls">
-    <label for="a5mode">Lampe</label>
-    <span class="meta" id="a5modeName"></span>
-    <input type="range" id="a5mode" min="0" max="2" step="1" value="0" aria-describedby="a5modeName">
+    <label for="a5x">Abstand Lichtquelle → Figur</label>
+    <span class="meta" id="a5xval"></span>
+    <input type="range" id="a5x" min="110" max="480" value="250" aria-describedby="a5xval">
   </div>
   <label class="meta" for="a5raysOn"><input type="checkbox" id="a5raysOn"> Randstrahlen zeigen</label>
 
-  <h3>a) Beschrifte die Leinwand</h3>
-  <p class="goal">Stelle dafür den Regler auf <i>zwei Lampen</i>. Was liegt bei A, B, C und D?</p>
+  <h3>Schritt 1 · Vergleichen</h3>
+  <div class="tablewrap"><table class="stand obs" id="a5obs"></table></div>
+
+  <h3>Schritt 2 · Beschriften</h3>
+  <p class="goal">Wähle <i>zwei Lichtquellen</i>. Siehst du nicht alle Buchstaben, schiebe die Figur weiter weg von der Lampe.</p>
   <div class="label-grid" id="a5labels"></div>
 
-  <h3>b) Satzbaukasten: Warum wird der Rand unscharf?</h3>
-  <p class="builder">Der Rand des Schattenbilds ist unscharf, weil
-    <select id="c1" aria-label="Ursache"><option value="">…</option><option>die Lampe eine Fläche hat</option><option>die Lampe sehr hell ist</option><option>der Gegenstand Licht durchlässt</option></select>.
-    Jeder Punkt der Lampe wirft
-    <select id="c2" aria-label="Schatten je Punkt"><option value="">…</option><option>einen eigenen Schatten</option><option>keinen Schatten</option></select>.
-    Im Kernschatten kommt
-    <select id="c3" aria-label="Licht im Kernschatten"><option value="">…</option><option>kein Licht</option><option>Licht von einem Teil der Lampe</option></select>
-    an, im Halbschatten kommt
-    <select id="c4" aria-label="Licht im Halbschatten"><option value="">…</option><option>kein Licht</option><option>Licht von einem Teil der Lampe</option></select>
-    an.
+  <h3>Schritt 3 · Erklären: Warum wird der Rand unscharf?</h3>
+  <p class="goal">Klicke die Karten in der richtigen Reihenfolge an. Ein Klick auf eine Karte in deiner Erklärung nimmt sie wieder heraus.</p>
+  <div class="chain" id="a5chain" aria-label="Deine Erklärung"></div>
+  <div class="cardbank" id="a5cards"></div>
+
+  <h3>Schritt 4 · Abstand</h3>
+  <p class="builder">Je näher die Figur an der ausgedehnten Lichtquelle ist, desto
+    <select id="d1" aria-label="breiter oder schmaler"><option value="">…</option><option>breiter</option><option>schmaler</option></select>
+    ist der Halbschatten und desto
+    <select id="d2" aria-label="unschärfer oder schärfer"><option value="">…</option><option>unschärfer</option><option>schärfer</option></select>
+    ist der Rand des Schattenbilds.
   </p>
 
-  <h3>c) Und bei der Sonne?</h3>
+  <h3>Schritt 5 · Und bei der Sonne?</h3>
   <div class="mc" id="a5mc"></div>
   <div class="actions"><button class="btn" id="a5check">Prüfen</button><button class="btn tip" id="a5tip">Tipp</button></div>
   <div id="a5fb"></div>
@@ -570,7 +604,7 @@ const svgEl = (tag, attrs) => { const e = document.createElementNS(SVGNS, tag); 
 
 /* ---------- Zustand ---------- */
 const KEY = "schattenwerkstatt-v4";
-const blank = () => ({ self: {}, res: {}, ad: {}, ct: {}, ctTips: {}, ctList: {}, ctFirst: null, a1: [], a2l: {}, a2s: {}, a3b: {}, a3mc: {}, a4: {}, a5: {}, task: null, essay: "", v1: null, fb1: null, fb2: null });
+const blank = () => ({ self: {}, res: {}, ad: {}, ct: {}, ctTips: {}, ctList: {}, ctFirst: null, a1: [], a2l: {}, a2s: {}, a3m: {}, a3s: [[], []], a3mc: {}, a4: {}, a5: {}, task: null, essay: "", v1: null, fb1: null, fb2: null });
 let S = blank();
 try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(blank(), JSON.parse(raw)); } catch (e) {}
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
@@ -861,43 +895,84 @@ $("#a2check").onclick = () => {
 };
 $("#a2tip").onclick = () => showFb("#a2fb", "tipbox", "<strong>Tipp:</strong> Ein <em>Raum</em> ist dreidimensional – du kannst etwas hineinhalten. Ein <em>Bild</em> ist flach – du siehst es auf einer Fläche wie der Wand oder dem Schirm. Der Schattenraum endet dort, wo das Schattenbild beginnt.");
 
-/* ---------- A3 Simulation ---------- */
-const SIM = { Lx: 40, a: 12, cy: 120, h: 30, Sx: 560, cmPerUnit: 0.2 };
+/* ---------- A3 Groß oder klein? (punktförmige Lichtquelle) ---------- */
+const SIM = { Lx: 40, cy: 120, h: 30, Sx: 560, cmPerUnit: 0.2 };
+const simCm = v => Math.round(v * SIM.cmPerUnit);
+function simState() {
+  const Ox = +$("#simX").value, { Lx, h, Sx } = SIM;
+  return { Ox, half: h * (Sx - Lx) / (Ox - Lx) };
+}
 function drawSim() {
-  const Ox = +$("#simX").value, { Lx, a, cy, h, Sx } = SIM;
-  const k = (Sx - Lx) / (Ox - Lx);
-  const outer = (h + a) * k - a;          // halbe Höhe inkl. unscharfem Rand
-  const umb = a + (h - a) * k;            // halbe Höhe des dunklen Kerns
-  const midHalf = h * k;                  // Schattenbild, Mitte des Randes
+  const { Ox, half } = simState(), { Lx, cy, h, Sx } = SIM;
   $("#simFig").setAttribute("transform", `translate(${Ox},0)`);
-  $("#simCone").setAttribute("points", `${Lx},${cy - a} ${Lx},${cy + a} ${Sx},${cy + 400} ${Sx},${cy - 400}`);
-  $("#simPen").setAttribute("points", `${Ox},${cy - h} ${Sx},${cy - outer} ${Sx},${cy + outer} ${Ox},${cy + h}`);
-  $("#simUmb").setAttribute("points", `${Ox},${cy - h} ${Sx},${cy - umb} ${Sx},${cy + umb} ${Ox},${cy + h}`);
-  const r = $("#simShadow"); r.setAttribute("y", cy - outer); r.setAttribute("height", 2 * outer);
-  const grad = $("#shGrad"); grad.setAttribute("y1", cy - outer); grad.setAttribute("y2", cy + outer);
-  const f = (outer - umb) / (2 * outer);
-  $("#g1").setAttribute("offset", f.toFixed(3)); $("#g2").setAttribute("offset", (1 - f).toFixed(3));
-  const pen = outer - umb;
-  const edge = pen < 8 ? "scharf" : pen < 30 ? "etwas unscharf" : "sehr unscharf";
-  const cm = v => Math.round(v * SIM.cmPerUnit);
-  $("#simXval").textContent = cm(Ox - Lx) + " cm";
-  $("#simRead").innerHTML = `<span>Figur: <b>${cm(2 * h)} cm</b></span><span>Schattenbild: <b>${cm(2 * midHalf)} cm</b> hoch</span><span>Rand: <b>${edge}</b></span>`;
+  $("#simCone").setAttribute("points", `${Lx},${cy} ${Sx},${cy - 600} ${Sx},${cy + 600}`);
+  $("#simUmb").setAttribute("points", `${Ox},${cy - h} ${Sx},${cy - half} ${Sx},${cy + half} ${Ox},${cy + h}`);
+  const r = $("#simShadow"); r.setAttribute("y", cy - half); r.setAttribute("height", 2 * half);
+  $("#simXval").textContent = simCm(Ox - Lx) + " cm";
+  $("#simRead").innerHTML = `<span>Figur: <b>${simCm(2 * h)} cm</b> hoch</span><span>Schattenbild: <b>${simCm(2 * half)} cm</b> hoch</span>`;
 }
 $("#simX").addEventListener("input", drawSim);
+
+// Schritt 1: Messtabelle. Die Position ergibt sich aus dem Reglerbereich.
+const A3POS = [["nah", "nah an der Lampe"], ["mitte", "in der Mitte"], ["weit", "weit weg"]];
+const a3Zone = Ox => Ox < 200 ? "nah" : Ox < 360 ? "mitte" : "weit";
+function renderA3Table() {
+  const t = $("#a3table"); t.replaceChildren();
+  t.append(el("thead", {}, el("tr", {}, el("th", {}, "Figur steht …"), el("th", {}, "Abstand Lampe → Figur"), el("th", {}, "Höhe des Schattenbilds"))));
+  const tb = el("tbody");
+  A3POS.forEach(([k, lbl]) => { const m = S.a3m[k]; tb.append(el("tr", {}, el("td", {}, lbl), el("td", {}, m ? m.d + " cm" : "–"), el("td", {}, m ? m.h + " cm" : "–"))); });
+  t.append(tb);
+}
+$("#a3take").onclick = () => {
+  const { Ox, half } = simState(), z = a3Zone(Ox);
+  S.a3m[z] = { d: simCm(Ox - SIM.Lx), h: simCm(2 * half) }; save(); renderA3Table();
+  const missing = A3POS.filter(([k]) => !S.a3m[k]).map(([, l]) => l);
+  $("#a3takeMsg").textContent = `Eingetragen bei „${A3POS.find(([k]) => k === z)[1]}“.` + (missing.length ? ` Es fehlt noch: ${missing.join(", ")}.` : " Die Tabelle ist vollständig.");
+};
+
+// Schritt 2: Je-desto-Sätze aus Bausteinen
+const A3CHIPS = ["desto kleiner", "Je näher", "ist das Schattenbild.", "Je weiter", "desto größer", "die Figur an der Lampe ist,"];
+const A3OK = [["Je näher", "die Figur an der Lampe ist,", "desto größer", "ist das Schattenbild."], ["Je weiter", "die Figur an der Lampe ist,", "desto kleiner", "ist das Schattenbild."]];
+let a3Slot = 0;
+function renderA3Sent() {
+  const box = $("#a3slots"); box.replaceChildren();
+  [0, 1].forEach(si => {
+    const slot = el("div", { class: "slot" + (si === a3Slot ? " active" : ""), id: "a3slot" + si, role: "button", tabindex: "0", "aria-label": `Satz ${si + 1}${si === a3Slot ? " (ausgewählt)" : ""}`,
+      onclick: e => { if (e.target === slot) { a3Slot = si; renderA3Sent(); } },
+      onkeydown: e => { if (e.key === "Enter" && e.target === slot) { a3Slot = si; renderA3Sent(); } } });
+    S.a3s[si].forEach((w, wi) => slot.append(el("button", { class: "chip", onclick: () => { S.a3s[si].splice(wi, 1); a3Slot = si; save(); renderA3Sent(); } }, w)));
+    if (!S.a3s[si].length) slot.append(el("span", { class: "meta" }, si === a3Slot ? "Hier entsteht dein Satz …" : "Klicke hier, um diesen Satz zu bauen"));
+    box.append(el("div", { class: "slotrow" }, el("span", { class: "knum" }, "Satz " + (si + 1)), slot,
+      el("button", { class: "btn ghost small", onclick: () => { S.a3s[si] = []; a3Slot = si; save(); renderA3Sent(); } }, "Leeren")));
+  });
+  const bank = $("#a3bank"); bank.querySelectorAll(".chip").forEach(c => c.remove());
+  A3CHIPS.forEach(w => bank.append(el("button", { class: "chip", onclick: () => { S.a3s[a3Slot].push(w); save(); renderA3Sent(); } }, w)));
+}
+function judgeA3Sent(s) {
+  if (!s.length) return [false, "ist noch leer."];
+  const hit = A3OK.findIndex(ok => ok.join("|") === s.join("|"));
+  if (hit !== -1) return [true, "", hit];
+  if (s.includes("Je näher") && s.includes("desto kleiner") || s.includes("Je weiter") && s.includes("desto größer")) return [false, "passt noch nicht zu deiner Tabelle. Schau, wie groß das Schattenbild ist, wenn die Figur nah an der Lampe steht."];
+  if (s.length < 4) return [false, "ist noch nicht vollständig. Ein Je-desto-Satz hat hier vier Bausteine."];
+  return [false, "hat noch nicht die richtige Reihenfolge. Er beginnt mit „Je …“, dann kommt, wo die Figur steht, dann „desto …“."];
+}
+
+// Schritt 3: Anwenden
 const A3MC = [
   { q: "Beim Schattentheater soll der Drache riesig auf der Leinwand erscheinen. Was machst du?", o: [
-    ["Ich halte die Figur nah an die Lampe.", true, "Genau: Nah an der Lichtquelle wird das Schattenbild groß – aber auch unscharf."],
-    ["Ich halte die Figur nah an die Leinwand.", false, "Probiere es in der Simulation aus: Was passiert, wenn die Figur nah an der Leinwand ist?"],
+    ["Ich halte die Figur nah an die Lampe.", true, ""],
+    ["Ich halte die Figur nah an die Leinwand.", false, "Schau in deine Tabelle: Wann ist das Schattenbild am größten?"],
     ["Ich nehme eine größere Leinwand.", false, "Eine größere Leinwand ändert die Größe des Schattenbilds nicht. Entscheidend ist der Abstand."],
   ] },
-  { q: "Lisa hält ihre Hand ganz nah vor die Wand. Die Lampe steht weit weg. Wie sieht das Schattenbild aus?", o: [
-    ["Groß und unscharf.", false, "Die Hand ist weit weg von der Lampe. Schau in der Simulation nach, was dann passiert."],
-    ["Etwa so groß wie die Hand und scharf.", true, "Richtig: Weit weg von der Lichtquelle wird das Schattenbild klein und scharf."],
-    ["Es gibt kein Schattenbild, weil die Hand zu nah ist.", false, "Auch nah an der Wand hält die Hand Licht ab. Es entsteht ein Schattenbild."],
+  { q: "Lisa hält ihre Hand ganz nah vor die Wand. Die Lampe steht weit weg. Wie groß ist das Schattenbild?", o: [
+    ["Viel größer als die Hand.", false, "Die Hand ist weit weg von der Lampe. Was zeigt deine Tabelle für „weit weg“?"],
+    ["Etwa so groß wie die Hand.", true, ""],
+    ["Es gibt kein Schattenbild, weil die Hand zu nah an der Wand ist.", false, "Auch nah an der Wand hält die Hand Licht ab. Es entsteht ein Schattenbild."],
   ] },
 ];
 function renderA3() {
-  ["b1", "b2", "b3"].forEach(id => { const s = $("#" + id); s.value = S.a3b[id] || ""; s.onchange = () => { S.a3b[id] = s.value; s.className = ""; save(); }; });
+  S.a3m = S.a3m || {}; S.a3s = S.a3s || [[], []];
+  renderA3Table(); renderA3Sent();
   const box = $("#a3mc"); box.replaceChildren();
   A3MC.forEach((it, qi) => {
     const fs = el("fieldset", {}, el("legend", {}, it.q));
@@ -911,29 +986,41 @@ function renderA3() {
   });
 }
 $("#a3check").onclick = () => {
-  const b = ["b1", "b2", "b3"].map(id => S.a3b[id] || "");
-  const okSent = (b[0] === "näher" && b[1] === "größer" && b[2] === "unschärfer") || (b[0] === "weiter" && b[1] === "kleiner" && b[2] === "schärfer");
-  const msgs = []; let r = 0;
-  const half = (b[0] === "näher" && b[1] === "größer") || (b[0] === "weiter" && b[1] === "kleiner");
-  ["b1", "b2", "b3"].forEach(id => $("#" + id).className = okSent ? "right" : (b.every(Boolean) ? "wrong" : ""));
-  if (okSent) r++;
-  else if (!b.every(Boolean)) msgs.push("Wähle im Satzbaukasten alle drei Wörter aus.");
-  else if (half) msgs.push("Satzbaukasten: Die Größe stimmt. Schau dir in der Simulation noch einmal den Rand an.");
-  else msgs.push("Satzbaukasten: Der Satz passt noch nicht zu deiner Beobachtung. Schiebe die Figur nah an die Lampe und beobachte.");
+  const lines = []; let r = 0;
+  // Schritt 1
+  const have = A3POS.filter(([k]) => S.a3m[k]).length;
+  if (have === 3) { r++; lines.push(["ok", "Schritt 1: Die Messtabelle ist vollständig."]); }
+  else lines.push(["warn", `Schritt 1: Es fehlen noch ${3 - have} von 3 Messungen.`]);
+  // Schritt 2
+  const j = [0, 1].map(si => judgeA3Sent(S.a3s[si]));
+  if (j[0][0] && j[1][0] && j[0][2] === j[1][2]) j[1] = [false, "ist derselbe Satz wie Satz 1. Schreibe ihn andersherum: Beginne mit dem anderen „Je …“."];
+  j.forEach(([ok, why], si) => {
+    $("#a3slot" + si).classList.toggle("right", ok); $("#a3slot" + si).classList.toggle("wrong", !ok && S.a3s[si].length > 0);
+    if (ok) r++;
+    lines.push(ok ? ["ok", `Schritt 2: Satz ${si + 1} sitzt.`] : ["warn", `Schritt 2: Satz ${si + 1} ${why}`]);
+  });
+  // Schritt 3
   A3MC.forEach((it, qi) => {
-    const sel = S.a3mc[qi];
-    const labels = document.querySelectorAll(`#a3mc fieldset:nth-of-type(${qi + 1}) label`);
+    const sel = S.a3mc[qi], labels = document.querySelectorAll(`#a3mc fieldset:nth-of-type(${qi + 1}) label`);
     labels.forEach(l => l.className = "");
-    if (sel == null) { msgs.push(`Frage ${qi + 1}: noch keine Antwort.`); return; }
+    if (sel == null) { lines.push(["warn", `Schritt 3: Frage ${qi + 1} ist noch offen.`]); return; }
     const [, ok, why] = it.o[sel];
     labels[sel].className = ok ? "right" : "wrong";
-    if (ok) r++; else msgs.push(`Frage ${qi + 1}: ${why}`);
+    if (ok) { r++; lines.push(["ok", `Schritt 3: Frage ${qi + 1} sitzt.`]); } else lines.push(["warn", `Schritt 3: Frage ${qi + 1} – ${why}`]);
   });
-  setRes("a3", r / 3);
-  if (r === 3) showFb("#a3fb", "ok", "<strong>Alles sitzt.</strong> Du kannst erklären, wie der Abstand das Schattenbild verändert.");
-  else showFb("#a3fb", "warn", `<strong>${r} von 3 sitzen.</strong><ul>${msgs.map(m => "<li>" + m + "</li>").join("")}</ul>`);
+  setRes("a3", r / 5);
+  showFb("#a3fb", r === 5 ? "ok" : "warn", (r === 5 ? "<strong>Alles sitzt.</strong> Du kannst erklären, wie der Abstand die Größe des Schattenbilds verändert." : `<strong>${r} von 5 sitzen.</strong>`) + stepList(lines));
 };
-$("#a3tip").onclick = () => showFb("#a3fb", "tipbox", "<strong>Tipp:</strong> Stelle den Regler ganz nach links und dann ganz nach rechts. Schreib dir beide Male die Größe und den Rand auf. Dann vergleiche: Was ändert sich, wenn die Figur <em>näher</em> an die Lampe kommt?");
+$("#a3tip").onclick = () => {
+  const have = A3POS.filter(([k]) => S.a3m[k]).length;
+  const tip = have < 3 ? "Schiebe den Regler ganz nach links, in die Mitte und ganz nach rechts. Klicke jedes Mal auf „Messwert übernehmen“."
+    : !A3OK.some(ok => ok.join("|") === S.a3s[0].join("|")) || !A3OK.some(ok => ok.join("|") === S.a3s[1].join("|"))
+      ? "Lies deine Tabelle von oben nach unten: Die Figur kommt weiter weg – was passiert mit dem Schattenbild? Satz 1 beginnt mit „Je näher“, Satz 2 mit „Je weiter“."
+      : "Die Fragen in Schritt 3 kannst du mit deiner Tabelle beantworten.";
+  showFb("#a3fb", "tipbox", "<strong>Tipp:</strong> " + tip);
+};
+// Rückmeldung als Liste mit einem Zeichen je Schritt
+const stepList = lines => `<ul class="steplist">${lines.map(([k, t]) => `<li class="${k}">${k === "ok" ? "✓" : "○"} ${t}</li>`).join("")}</ul>`;
 
 /* ---------- A4 Strahlengang ---------- */
 const A4 = {
@@ -1002,66 +1089,101 @@ $("#a4tip").onclick = () => {
 };
 $("#a4reset").onclick = () => { S.a4.h = A4.start.map(p => ({ ...p })); save(); drawA4(); showFb("#a4fb"); };
 
-/* ---------- A5 Kern- und Halbschatten (Block 3) ---------- */
-// Eine breite Lampe wirkt wie viele Punktlampen: Jeder Punkt wirft seinen eigenen Schatten.
+/* ---------- A5 Wie ist es in Wirklichkeit? (Block 3) ---------- */
+// Eine ausgedehnte Lichtquelle wirkt wie viele Punktlichtquellen: Jeder Punkt wirft seinen eigenen Schatten.
 // Wo kein Punkt hinleuchtet, ist Kernschatten; wo nur ein Teil hinleuchtet, Halbschatten.
 const A5 = {
-  Lx: 50, Ox: 250, top: 105, bot: 155, Sx: 560,
+  Lx: 50, top: 105, bot: 155, Sx: 560,
   modes: [
-    { name: "Punktlampe", ys: [130] },
-    { name: "Zwei Lampen", ys: [110, 150] },
-    { name: "Breite Lampe (wie viele Punkte)", ys: Array.from({ length: 15 }, (_, i) => 110 + i * 40 / 14) },
+    { name: "punktförmige Lichtquelle", ys: [130] },
+    { name: "zwei Lichtquellen", ys: [110, 150] },
+    { name: "ausgedehnte Lichtquelle", ys: Array.from({ length: 15 }, (_, i) => 110 + i * 40 / 14) },
   ],
-  marks: [["A", 60], ["B", 130], ["C", 195], ["D", 243]],
+  obsCols: [["toene", "Grautöne auf der Leinwand", ["1", "2", "viele, fließend"]], ["kern", "Kernschatten?", ["ja", "nein"]], ["halb", "Halbschatten?", ["ja", "nein"]]],
+  obsAns: [{ toene: "1", kern: "ja", halb: "nein" }, { toene: "2", kern: "ja", halb: "ja" }, { toene: "viele, fließend", kern: "ja", halb: "ja" }],
   ans: { A: "Halbschatten", B: "Kernschatten", C: "Halbschatten", D: "voll beleuchtet" },
-  sent: { c1: "die Lampe eine Fläche hat", c2: "einen eigenen Schatten", c3: "kein Licht", c4: "Licht von einem Teil der Lampe" },
+  cards: {
+    k1: "Eine ausgedehnte Lichtquelle besteht aus vielen Lichtpunkten.",
+    k2: "Jeder Lichtpunkt wirft einen eigenen Schatten.",
+    k3: "In der Mitte kommt von keinem Lichtpunkt Licht an: Dort ist der Kernschatten.",
+    k4: "Am Rand kommt nur von einem Teil der Lichtpunkte Licht an: Dort ist der Halbschatten.",
+    k5: "Deshalb wird das Schattenbild zum Rand hin langsam heller.",
+    x1: "Der Schatten ist am Rand dünner, darum ist er dort heller.",
+    x2: "Am Rand lässt die Figur ein wenig Licht durch.",
+  },
+  cardOrder: ["k4", "x1", "k1", "k5", "x2", "k2", "k3"],
+  chainOk: [["k1", "k2", "k3", "k4", "k5"], ["k1", "k2", "k4", "k3", "k5"]],
+  dist: { d1: "breiter", d2: "unschärfer" },
   mc: { q: "Bei einer Sonnenfinsternis hat der Schatten des Mondes einen Kernschatten und einen Halbschatten. Warum?", o: [
-    ["Die Sonne ist sehr groß. Sie wirkt wie viele Lichtquellen nebeneinander.", true, "Genau: Die Sonne ist eine breite Lichtquelle – wie die breite Lampe in der Simulation."],
-    ["Es gibt zwei Sonnen, so wie in Station 3 zwei Lampen.", false, "Es gibt nur eine Sonne. Überlege: Was hat die breite Lampe mit den zwei Lampen gemeinsam?"],
+    ["Die Sonne ist eine ausgedehnte Lichtquelle. Sie wirkt wie viele Lichtpunkte nebeneinander.", true, ""],
+    ["Es gibt zwei Sonnen, so wie in Station 3 zwei Lampen.", false, "Es gibt nur eine Sonne. Was hat die ausgedehnte Lichtquelle mit den zwei Lichtquellen gemeinsam?"],
     ["Der Mond lässt etwas Licht durch.", false, "Der Mond ist lichtundurchlässig. Der Halbschatten entsteht durch die Lichtquelle, nicht durch den Gegenstand."],
   ] },
 };
-const a5proj = (sy, y) => sy + (y - sy) * (A5.Sx - A5.Lx) / (A5.Ox - A5.Lx);
 const A5_COLORS = ["var(--lamp)", "var(--tip)"];
+const a5Ox = () => +$("#a5x").value;
+const a5proj = (sy, y, Ox) => sy + (y - sy) * (A5.Sx - A5.Lx) / (Ox - A5.Lx);
 function drawA5() {
-  const mode = +$("#a5mode").value, ys = A5.modes[mode].ys, n = ys.length;
-  $("#a5modeName").textContent = A5.modes[mode].name;
-  // Schatten jeder einzelnen Lampe halb durchsichtig übereinander: wo sich alle decken, wird es am dunkelsten
+  const mode = S.a5.mode ?? 0, ys = A5.modes[mode].ys, n = ys.length, Ox = a5Ox();
+  $("#a5modes").querySelectorAll("button").forEach((b, i) => b.setAttribute("aria-pressed", String(i === mode)));
+  $("#a5obj").setAttribute("x", Ox - 6);
+  $("#a5xval").textContent = Math.round((Ox - A5.Lx) * 0.2) + " cm";
+  // Schatten jeder einzelnen Lichtquelle halb durchsichtig übereinander: wo sich alle decken, wird es am dunkelsten
   const alpha = n === 1 ? 0.55 : n === 2 ? 0.35 : 0.12;
   const sh = $("#a5shadows"); sh.replaceChildren();
-  ys.forEach(sy => sh.append(svgEl("polygon", { points: `${A5.Ox},${A5.top} ${A5.Sx},${a5proj(sy, A5.top)} ${A5.Sx},${a5proj(sy, A5.bot)} ${A5.Ox},${A5.bot}`, fill: "var(--shade)", opacity: alpha })));
-  // Leinwand: Helligkeit = Anteil der Lampenpunkte, die diese Stelle erreichen
+  ys.forEach(sy => sh.append(svgEl("polygon", { points: `${Ox},${A5.top} ${A5.Sx},${a5proj(sy, A5.top, Ox)} ${A5.Sx},${a5proj(sy, A5.bot, Ox)} ${Ox},${A5.bot}`, fill: "var(--shade)", opacity: alpha })));
+  // Leinwand: Helligkeit = Anteil der Lichtpunkte, die diese Stelle erreichen
   const scr = $("#a5screen"); scr.replaceChildren(svgEl("rect", { x: 556, y: 0, width: 14, height: 260, fill: "var(--screen)", stroke: "var(--muted)" }));
   for (let y = 0; y < 260; y += 2) {
-    const blocked = ys.filter(sy => y + 1 >= a5proj(sy, A5.top) && y + 1 <= a5proj(sy, A5.bot)).length;
+    const blocked = ys.filter(sy => y + 1 >= a5proj(sy, A5.top, Ox) && y + 1 <= a5proj(sy, A5.bot, Ox)).length;
     if (blocked) scr.append(svgEl("rect", { x: 556, y, width: 14, height: 2, fill: "var(--shade)", opacity: (0.95 * blocked / n).toFixed(3) }));
   }
   const rays = $("#a5rays"); rays.replaceChildren();
   if ($("#a5raysOn").checked) {
     const show = n > 2 ? [ys[0], ys[n - 1]] : ys;
-    show.forEach((sy, i) => [A5.top, A5.bot].forEach(edge => rays.append(svgEl("line", { x1: A5.Lx, y1: sy, x2: A5.Sx, y2: a5proj(sy, edge), stroke: A5_COLORS[i % 2], "stroke-width": 1.8, "stroke-dasharray": "6 4" }))));
+    show.forEach((sy, i) => [A5.top, A5.bot].forEach(edge => rays.append(svgEl("line", { x1: A5.Lx, y1: sy, x2: A5.Sx, y2: a5proj(sy, edge, Ox), stroke: A5_COLORS[i % 2], "stroke-width": 1.8, "stroke-dasharray": "6 4" }))));
   }
   const lamps = $("#a5lamps"); lamps.replaceChildren();
   if (n > 2) lamps.append(svgEl("rect", { x: 42, y: 104, width: 16, height: 52, rx: 4, fill: "var(--lamp)", opacity: 0.45 }));
   ys.forEach((sy, i) => lamps.append(svgEl("circle", { cx: A5.Lx, cy: sy, r: n > 2 ? 2.4 : 6, fill: n === 2 ? A5_COLORS[i] : "var(--lamp)", stroke: "var(--ink)", "stroke-width": n > 2 ? 0.6 : 1.5 })));
+  // Buchstaben A–D nur bei zwei Lichtquellen, mittig in den Bereichen
   const marks = $("#a5marks"); marks.replaceChildren();
-  A5.marks.forEach(([m, y]) => {
+  if (mode !== 1) return;
+  const [y1, y2] = A5.modes[1].ys, tops = [a5proj(y1, A5.top, Ox), a5proj(y2, A5.top, Ox)], bots = [a5proj(y1, A5.bot, Ox), a5proj(y2, A5.bot, Ox)];
+  const tLo = Math.min(...tops), tHi = Math.max(...tops), bLo = Math.min(...bots), bHi = Math.max(...bots);
+  [["A", (Math.max(tLo, 0) + tHi) / 2], ["B", (tHi + bLo) / 2], ["C", (bLo + Math.min(bHi, 260)) / 2], ["D", (bHi + 260) / 2]].forEach(([m, y]) => {
+    if (y < 10 || y > 250 || (m === "D" && bHi > 238) || (m === "A" && tHi < 14)) return;
     marks.append(svgEl("circle", { cx: 536, cy: y, r: 11, fill: "var(--ink)" }));
     const t = svgEl("text", { x: 536, y: y + 5, "text-anchor": "middle", "font-size": 13, "font-weight": 700, style: "fill:var(--surface)" }); t.textContent = m; marks.append(t);
   });
 }
-$("#a5mode").addEventListener("input", drawA5);
+$("#a5x").addEventListener("input", () => { S.a5.Ox = a5Ox(); save(); drawA5(); });
 $("#a5raysOn").addEventListener("change", drawA5);
+const a5Sel = (id, opts, val, onchange, label) => { const s = el("select", { id, "aria-label": label, onchange }, el("option", { value: "" }, "…"), ...opts.map(o => el("option", {}, o))); s.value = val || ""; return s; };
+function renderA5Chain() {
+  const chain = $("#a5chain"); chain.replaceChildren();
+  S.a5.chain.forEach((k, i) => chain.append(el("button", { class: "card-chip", onclick: () => { S.a5.chain.splice(i, 1); save(); renderA5Chain(); } }, A5.cards[k])));
+  if (!S.a5.chain.length) chain.append(el("span", { class: "meta" }, "Hier entsteht deine Erklärung. Klicke unten die erste Karte an."));
+  const bank = $("#a5cards"); bank.replaceChildren();
+  A5.cardOrder.filter(k => !S.a5.chain.includes(k)).forEach(k => bank.append(el("button", { class: "card-chip", onclick: () => { S.a5.chain.push(k); save(); renderA5Chain(); } }, A5.cards[k])));
+}
 function renderA5() {
-  S.a5 = S.a5 || {};
+  S.a5 = S.a5 || {}; S.a5.obs = S.a5.obs || {}; S.a5.chain = S.a5.chain || [];
+  $("#a5x").value = S.a5.Ox || 250;
+  const modes = $("#a5modes"); modes.replaceChildren();
+  A5.modes.forEach((m, i) => modes.append(el("button", { onclick: () => { S.a5.mode = i; save(); drawA5(); } }, m.name)));
+  // Beobachtungstabelle
+  const t = $("#a5obs"); t.replaceChildren();
+  t.append(el("thead", {}, el("tr", {}, el("th", {}, "Lichtquelle"), ...A5.obsCols.map(([, h]) => el("th", {}, h)))));
+  const tb = el("tbody");
+  A5.modes.forEach((m, mi) => tb.append(el("tr", {}, el("td", {}, m.name), ...A5.obsCols.map(([c, h, opts]) =>
+    el("td", {}, a5Sel(`a5o-${mi}-${c}`, opts, S.a5.obs[mi + c], e => { S.a5.obs[mi + c] = e.target.value; e.target.className = ""; save(); }, `${m.name}: ${h}`))))));
+  t.append(tb);
   const g = $("#a5labels"); g.replaceChildren();
-  A5.marks.forEach(([m]) => {
-    const sel = el("select", { id: "a5sel" + m, "aria-label": "Bereich " + m, onchange: e => { S.a5[m] = e.target.value; e.target.className = ""; save(); } },
-      el("option", { value: "" }, "Bereich wählen …"), ...["Kernschatten", "Halbschatten", "voll beleuchtet"].map(o => el("option", {}, o)));
-    sel.value = S.a5[m] || "";
-    g.append(el("label", {}, el("span", { class: "badge" }, m), sel));
-  });
-  Object.keys(A5.sent).forEach(id => { const s = $("#" + id); s.value = S.a5[id] || ""; s.onchange = () => { S.a5[id] = s.value; s.className = ""; save(); }; });
+  ["A", "B", "C", "D"].forEach(m => g.append(el("label", {}, el("span", { class: "badge" }, m),
+    a5Sel("a5sel" + m, ["Kernschatten", "Halbschatten", "voll beleuchtet"], S.a5[m], e => { S.a5[m] = e.target.value; e.target.className = ""; save(); }, "Bereich " + m))));
+  renderA5Chain();
+  Object.keys(A5.dist).forEach(id => { const s = $("#" + id); s.value = S.a5[id] || ""; s.onchange = () => { S.a5[id] = s.value; s.className = ""; save(); }; });
   const fs = el("fieldset", {}, el("legend", {}, A5.mc.q));
   A5.mc.o.forEach(([txt], oi) => {
     const inp = el("input", { type: "radio", name: "a5q", id: "a5o" + oi, value: oi });
@@ -1072,24 +1194,54 @@ function renderA5() {
   $("#a5mc").replaceChildren(fs);
   drawA5();
 }
+// Wie viele Karten stehen von vorn richtig? (Kern- und Halbschatten-Karte dürfen die Plätze tauschen)
+const a5ChainPrefix = ch => Math.max(...A5.chainOk.map(ok => { let i = 0; while (i < ch.length && ch[i] === ok[i]) i++; return i; }));
+function a5Steps() {
+  const st = {};
+  let o = 0;
+  A5.modes.forEach((m, mi) => A5.obsCols.forEach(([c]) => {
+    const v = S.a5.obs[mi + c], s = $(`#a5o-${mi}-${c}`), ok = v === A5.obsAns[mi][c];
+    s.className = v ? (ok ? "right" : "wrong") : ""; if (ok) o++;
+  }));
+  st.obs = o;
+  let l = 0;
+  ["A", "B", "C", "D"].forEach(m => { const v = S.a5[m], s = $("#a5sel" + m), ok = v === A5.ans[m]; s.className = v ? (ok ? "right" : "wrong") : ""; if (ok) l++; });
+  st.lab = l;
+  const ch = S.a5.chain, wrongCard = ch.some(k => k.startsWith("x"));
+  st.chain = !wrongCard && ch.length === 5 && a5ChainPrefix(ch) === 5;
+  st.chainPrefix = a5ChainPrefix(ch); st.wrongCard = wrongCard;
+  $("#a5chain").classList.toggle("right", st.chain); $("#a5chain").classList.toggle("wrong", !st.chain && ch.length > 0);
+  let d = 0;
+  Object.entries(A5.dist).forEach(([id, a]) => { const s = $("#" + id), v = S.a5[id]; s.className = v ? (v === a ? "right" : "wrong") : ""; if (v === a) d++; });
+  st.dist = d;
+  const labels = document.querySelectorAll("#a5mc label"); labels.forEach(x => x.className = "");
+  st.mc = S.a5.mc == null ? null : A5.mc.o[S.a5.mc][1];
+  if (S.a5.mc != null) labels[S.a5.mc].className = st.mc ? "right" : "wrong";
+  return st;
+}
 $("#a5check").onclick = () => {
-  let r = 0; const msgs = [];
-  let lr = 0;
-  A5.marks.forEach(([m]) => { const s = $("#a5sel" + m), v = S.a5[m]; s.className = v ? (v === A5.ans[m] ? "right" : "wrong") : ""; if (v === A5.ans[m]) lr++; });
-  r += lr;
-  if (lr < 4) msgs.push(`Leinwand: ${lr} von 4 Bereichen sitzen.` + (S.a5.B === "Halbschatten" || S.a5.A === "Kernschatten" ? " Wo ist es am dunkelsten?" : ""));
-  let sr = 0;
-  Object.entries(A5.sent).forEach(([id, a]) => { const s = $("#" + id), v = S.a5[id]; s.className = v ? (v === a ? "right" : "wrong") : ""; if (v === a) sr++; });
-  r += sr;
-  if (sr < 4) msgs.push(`Satzbaukasten: ${sr} von 4 Teilen sitzen.`);
-  const labels = document.querySelectorAll("#a5mc label"); labels.forEach(l => l.className = "");
-  if (S.a5.mc == null) msgs.push("Frage c: noch keine Antwort.");
-  else { const [, ok, why] = A5.mc.o[S.a5.mc]; labels[S.a5.mc].className = ok ? "right" : "wrong"; if (ok) r++; else msgs.push("Frage c: " + why); }
-  setRes("a5", r / 9);
-  if (r === 9) showFb("#a5fb", "ok", "<strong>Alles sitzt.</strong> Du kannst erklären, wie Kern- und Halbschatten entstehen – und warum eine große Lichtquelle wie die Sonne einen unscharfen Rand macht.");
-  else showFb("#a5fb", "warn", `<strong>${r} von 9 sitzen.</strong><ul>${msgs.map(m => "<li>" + m + "</li>").join("")}</ul>`);
+  const st = a5Steps(), lines = [];
+  lines.push(st.obs === 9 ? ["ok", "Schritt 1: Deine Beobachtungstabelle stimmt."] : ["warn", `Schritt 1: ${st.obs} von 9 Feldern stimmen. Klicke die Lichtquelle noch einmal an und schau genau auf die Leinwand.`]);
+  lines.push(st.lab === 4 ? ["ok", "Schritt 2: Die Leinwand ist richtig beschriftet."] : ["warn", `Schritt 2: ${st.lab} von 4 Bereichen stimmen.` + (S.a5.B === "Halbschatten" || S.a5.A === "Kernschatten" ? " Wo ist es am dunkelsten?" : "")]);
+  if (st.chain) lines.push(["ok", "Schritt 3: Deine Erklärung ist vollständig und logisch."]);
+  else if (st.wrongCard) lines.push(["warn", "Schritt 3: In deiner Erklärung steckt eine Karte, die eine falsche Vorstellung beschreibt. Finde sie und nimm sie heraus."]);
+  else if (!S.a5.chain.length) lines.push(["warn", "Schritt 3: Deine Erklärung ist noch leer."]);
+  else lines.push(["warn", `Schritt 3: Die ersten ${st.chainPrefix} Karten stehen richtig.` + (S.a5.chain.length < 5 ? " Es fehlen noch Karten." : " Danach stimmt die Reihenfolge noch nicht.")]);
+  lines.push(st.dist === 2 ? ["ok", "Schritt 4: Dein Je-desto-Satz stimmt."] : ["warn", `Schritt 4: ${st.dist} von 2 Wörtern stimmen. Schiebe die Figur bei der ausgedehnten Lichtquelle nah an die Lampe und weit weg.`]);
+  lines.push(st.mc == null ? ["warn", "Schritt 5: Die Frage ist noch offen."] : st.mc ? ["ok", "Schritt 5: Richtig – die Sonne ist eine ausgedehnte Lichtquelle."] : ["warn", "Schritt 5: " + A5.mc.o[S.a5.mc][2]]);
+  const r = st.obs + st.lab + (st.chain ? 1 : 0) + st.dist + (st.mc ? 1 : 0);
+  setRes("a5", r / 17);
+  showFb("#a5fb", r === 17 ? "ok" : "warn", (r === 17 ? "<strong>Alles sitzt.</strong> Du kannst erklären, warum echte Lichtquellen einen Halbschatten und einen unscharfen Rand erzeugen – auch bei der Sonne." : `<strong>${r} von 17 sitzen.</strong>`) + stepList(lines));
 };
-$("#a5tip").onclick = () => showFb("#a5fb", "tipbox", "<strong>Tipp:</strong> Stelle den Regler auf <i>zwei Lampen</i> und schalte die Randstrahlen ein. Geh auf der Leinwand von oben nach unten und frag an jeder Stelle: Von wie vielen Lampen kommt hier Licht an? Von beiden → voll beleuchtet. Von einer → Halbschatten. Von keiner → Kernschatten.");
+$("#a5tip").onclick = () => {
+  const st = a5Steps();
+  const tip = st.obs < 9 ? "Schritt 1: Klicke eine Lichtquelle an und schau nur auf die Leinwand. Ist sie überall gleich dunkel? Gibt es hellere Streifen am Rand?"
+    : st.lab < 4 ? "Schritt 2: Schalte die Randstrahlen ein. Frag an jeder Stelle der Leinwand: Von wie vielen Lichtquellen kommt hier Licht an? Von beiden → voll beleuchtet. Von einer → Halbschatten. Von keiner → Kernschatten."
+    : !st.chain ? "Schritt 3: Eine Erklärung geht vom Grund zur Folge. Woraus besteht die Lichtquelle? Was macht jeder Punkt? Was passiert in der Mitte, was am Rand? Was folgt daraus? Ein Schatten ist kein Ding – er kann nicht dünner sein."
+    : st.dist < 2 ? "Schritt 4: Wähle die ausgedehnte Lichtquelle. Schiebe die Figur ganz nah an die Lampe und dann ganz weit weg. Wann ist der hellere Streifen am Rand breiter?"
+    : "Schritt 5: Denk an die ausgedehnte Lichtquelle. Ist die Sonne ein Punkt?";
+  showFb("#a5fb", "tipbox", "<strong>Tipp:</strong> " + tip);
+};
 
 /* ---------- Schreibwerkstatt ---------- */
 const TASKS = [

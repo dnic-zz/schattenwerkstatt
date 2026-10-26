@@ -39,9 +39,10 @@ Nach jeder Änderung an der Quelle: `./build.sh`, dann das Artifact neu veröffe
 ## Stand
 
 - Block 2 (K4–K7, Schatten und ihre Eigenschaften) fertig: Artikel-Detektiv, Übungen 1–4, Schreibwerkstatt, Sprach-Check, Mein Stand.
-- Block 3 begonnen: Übung 5 (K8) mit Lampen-Regler Punktlampe → zwei Lampen → breite Lampe. Kernidee: Eine breite Lampe (und die Sonne) wirkt wie viele Punktlampen; daher Halbschatten und unscharfer Rand. Diese Linie führt zu den Finsternissen in Block 4.
+- Übung 3 (K6): punktförmige Lichtquelle, nur Größe. Schritte: Messtabelle (nah/Mitte/weit) → zwei Je-desto-Sätze aus Bausteinen → Anwenden.
+- Block 3 begonnen: Übung 5 „Wie ist es in Wirklichkeit?“ (K8) nach dem Strahlengang. Knöpfe punktförmige / zwei / ausgedehnte Lichtquelle, Abstandsregler. Schritte: Beobachtungstabelle → Leinwand A–D beschriften → Erklärkette aus Satzkarten (mit zwei Fehlvorstellungs-Karten) → Je-desto „breiter Halbschatten, unschärfer“ → Transfer Sonne. Kernidee: Eine ausgedehnte Lichtquelle (auch die Sonne) wirkt wie viele Punktlichtquellen.
+- Rückmeldungen nach Schritten gegliedert (✓/○ je Schritt), Tipp passt zum ersten offenen Schritt.
 - Offen: Block 1 (K1–K3), K9 aus Block 3, Block 4 (K10–K13, Tag/Nacht, Mondphasen, Finsternisse).
-- Offen in Block 2: Die Simulation in Übung 3 zeigt schon zwei Grautöne (Kern- und Halbschatten), ohne die Begriffe einzuführen. Mit dem Nutzer klären, ob sie vereinfacht wird.
 
 ## Versionen
 
