@@ -39,8 +39,10 @@ Nach jeder Änderung an der Quelle: `./build.sh`, dann das Artifact neu veröffe
 ## Stand
 
 - Block 2 (K4–K7, Schatten und ihre Eigenschaften) fertig: Artikel-Detektiv, Übungen 1–4, Schreibwerkstatt, Sprach-Check, Mein Stand.
-- Übung 3 (K6): punktförmige Lichtquelle, nur Größe. Schritte: Messtabelle (nah/Mitte/weit) → zwei Je-desto-Sätze aus Bausteinen → Anwenden.
-- Block 3 begonnen: Übung 5 „Wie ist es in Wirklichkeit?“ (K8) nach dem Strahlengang. Knöpfe punktförmige / zwei / ausgedehnte Lichtquelle, Abstandsregler. Schritte: Beobachtungstabelle → Leinwand A–D beschriften → Erklärkette aus Satzkarten (mit zwei Fehlvorstellungs-Karten) → Je-desto „breiter Halbschatten, unschärfer“ → Transfer Sonne. Kernidee: Eine ausgedehnte Lichtquelle (auch die Sonne) wirkt wie viele Punktlichtquellen.
+- Reihenfolge: Selbsteinschätzung → Artikel-Detektiv (9 Wörter, gemischt) → 1 Lückentext → 2 Schattenraum/Schattenbild → 3 Strahlengang → 4 Groß, klein, unscharf → 5 Schreibwerkstatt → 6 Sprach-Check → Mein Stand.
+- Übung 4: eine Simulation (Knöpfe punktförmige / zwei / ausgedehnte Lichtquelle, Abstandsregler, Randstrahlen). a) zwei Je-desto-Sätze aus Bausteinen (Größe, punktförmige Lichtquelle); b) Erklärkette aus Satzkarten zum unscharfen Rand (zwei Fehlvorstellungs-Karten). Bewusst kurz (6–8 Minuten), Fokus Sprache.
+- Lernziele werden den Schülern nur als 1, 2, 3 … angezeigt; die K-Kürzel bleiben intern.
+- Für Block 4 aufgehoben: Transferfrage „Warum hat der Mondschatten einen Halbschatten?“ (Sonne als ausgedehnte Lichtquelle).
 - Rückmeldungen nach Schritten gegliedert (✓/○ je Schritt), Tipp passt zum ersten offenen Schritt.
 - Offen: Block 1 (K1–K3), K9 aus Block 3, Block 4 (K10–K13, Tag/Nacht, Mondphasen, Finsternisse).
 
