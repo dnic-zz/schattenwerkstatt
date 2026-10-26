@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Schattenwerkstatt – Vorstellung</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+/* Druckvorlage A4, zwei Seiten; Farben wie in der Schattenwerkstatt */
+@page { size: A4; margin: 16mm 16mm 16mm 16mm; }
+:root {
+  --ink: #1a2232; --muted: #586377; --line: #d6dce6; --bg: #eef1f6;
+  --lamp: #e39a0c; --lamp-ink: #8a5a00; --lamp-soft: #fff0c8;
+  --ok: #23804a; --ok-soft: #dff3e6; --warn: #b35f0c; --warn-soft: #fdebd6;
+  --tip: #7a3fd0; --tip-soft: #efe6fc; --blue: #2456c4; --blue-soft: #e4ecfb;
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Verdana", "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; color: var(--ink); background: #fff; font-family: var(--font-body); font-size: 9.6pt; line-height: 1.45; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; margin: 0; }
+h1 { font-size: 24pt; font-weight: 800; letter-spacing: -0.01em; }
+h2 { font-size: 13pt; font-weight: 800; margin-bottom: 5px; }
+h3 { font-size: 10.5pt; font-weight: 600; margin-bottom: 4px; }
+p { margin: 0 0 6px; }
+ul { margin: 0; padding-left: 15px; }
+li { margin-bottom: 2px; }
+a { color: var(--blue); }
+
+.head { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: end; border-bottom: 3px solid var(--lamp); padding-bottom: 10px; margin-bottom: 12px; }
+.kicker { font-size: 8pt; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.sub { font-size: 11pt; color: var(--muted); margin-top: 3px; }
+.by { font-size: 8.5pt; color: var(--muted); text-align: right; }
+
+.link { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; align-items: center; background: var(--lamp-soft); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+.link .btn { grid-row: span 2; display: inline-block; background: var(--lamp); color: #1a1200; font-weight: 700; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-size: 10.5pt; }
+.link .url { font-size: 11pt; font-weight: 700; }
+.link .url a { color: var(--lamp-ink); text-decoration: none; }
+.link .note { font-size: 8.5pt; color: var(--muted); }
+
+section { margin-bottom: 11px; break-inside: avoid; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.box { border-radius: 8px; padding: 10px 12px; break-inside: avoid; }
+.box h2 { font-size: 11.5pt; }
+.didaktik { background: var(--ok-soft); }
+.didaktik h2 { color: var(--ok); }
+.technik { background: var(--blue-soft); }
+.technik h2 { color: var(--blue); }
+.offen { background: var(--warn-soft); }
+.offen h2 { color: var(--warn); }
+.ausblick { background: var(--tip-soft); }
+.ausblick h2 { color: var(--tip); }
+
+table { width: 100%; border-collapse: collapse; font-size: 8.8pt; }
+th { text-align: left; font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); padding: 3px 6px; border-bottom: 2px solid var(--line); }
+td { padding: 3px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.flow { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font-size: 8.6pt; }
+.flow span { background: var(--bg); border-radius: 999px; padding: 2px 9px; }
+.flow i { color: var(--muted); font-style: normal; }
+.a-der { color: #2456c4; font-weight: 700; } .a-die { color: #c0322b; font-weight: 700; } .a-das { color: #1b7d45; font-weight: 700; }
+.page2 { break-before: page; }
+.foot { margin-top: 10px; padding-top: 6px; border-top: 1px solid var(--line); font-size: 7.8pt; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="head">
+  <div>
+    <div class="kicker">Pädagogischer Tag · Sprachförderung im Fachunterricht</div>
+    <h1>Schattenwerkstatt</h1>
+    <div class="sub">Ein sprachsensibles interaktives Arbeitsblatt zu „Licht und Schatten“ (Physik, Q1)</div>
+  </div>
+  <div class="by">Dominic Scherer<br>Oktober 2026</div>
+</div>
+
+<div class="link">
+  <a class="btn" href="https://dnic-zz.github.io/schattenwerkstatt/">Zum Arbeitsblatt →</a>
+  <div class="url"><a href="https://dnic-zz.github.io/schattenwerkstatt/">dnic-zz.github.io/schattenwerkstatt</a></div>
+  <div class="note">Läuft im Browser auf iPad und Laptop, ohne Anmeldung. Auf der Seite oben „Für Lehrkräfte“ aufklappen.</div>
+</div>
+
+<section>
+  <h2>Worum geht es?</h2>
+  <p><b>Ziel:</b> Das Arbeitsblatt fördert die Fachsprache zum Thema „Licht und Schatten“. Es bereitet die Schülerinnen und Schüler auf die Schreibaufgaben im Langtest vor: erklären, begründen, beschreiben. Fachlich deckt es die Erfolgskriterien der Checkliste ab – Entstehung von Schatten, Schattenraum und Schattenbild, Strahlengänge, Größe des Schattenbilds, Kern- und Halbschatten.</p>
+  <p><b>Grundlage:</b> Das Material folgt dem sprachsensiblen Fachunterricht nach Josef Leisen. Fachlernen und Sprachlernen gehören zusammen. Sprachhilfen dienen als Gerüst, mit dem die Lernenden fachlich sprechen und schreiben, bevor sie es selbstständig tun.</p>
+  <p><b>Ablauf</b> (etwa 30 Minuten):</p>
+  <div class="flow"><span>Selbsteinschätzung</span><i>→</i><span>Artikel-Detektiv</span><i>→</i><span>1 Lückentext</span><i>→</i><span>2 Schattenraum oder Schattenbild</span><i>→</i><span>3 Strahlengang</span><i>→</i><span>4 Groß, klein, unscharf</span><i>→</i><span>5 Schreibwerkstatt</span><i>→</i><span>6 Sprach-Check</span><i>→</i><span>Mein Stand → Kursnotizbuch</span></div>
+</section>
+
+<section>
+  <h2>Eingesetzte Methoden</h2>
+  <table>
+    <thead><tr><th>Methode</th><th>Wo im Arbeitsblatt</th></tr></thead>
+    <tbody>
+      <tr><td>Wortspeicher mit Artikeln</td><td>Artikel-Detektiv, Übung 1, Schreibwerkstatt</td></tr>
+      <tr><td>Lückentext</td><td>Übung 1</td></tr>
+      <tr><td>Bild beschriften, Aussagen zuordnen</td><td>Übung 2</td></tr>
+      <tr><td>Wechsel der Darstellungsform (Simulation → Satz)</td><td>Übungen 3 und 4</td></tr>
+      <tr><td>Satzbausteine (Je-desto-Sätze)</td><td>Übung 4a</td></tr>
+      <tr><td>Satzpuzzle: Erklärung ordnen, Fehlvorstellungen aussortieren</td><td>Übung 4b</td></tr>
+      <tr><td>Satzanfänge und Gliederung als Schreibhilfe</td><td>Schreibwerkstatt</td></tr>
+      <tr><td>Schreiben als Prozess: Rückmeldung, Überarbeitung</td><td>Schreibwerkstatt</td></tr>
+      <tr><td>C-Test zur Diagnose der Fachsprache</td><td>Sprach-Check</td></tr>
+      <tr><td>Selbsteinschätzung und Abgleich mit dem Ergebnis</td><td>Start und „Mein Stand“</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Sprachlicher Schwerpunkt: Artikel</h2>
+  <p>Viele Lernende hatten Schwierigkeiten mit den Artikeln. Fast alle Fachbegriffe sind zusammengesetzte Nomen, deshalb zieht sich eine Regel durch alle Übungen: <b>Das letzte Wort bestimmt den Artikel</b> (<span class="a-der">der</span> Schatten<u>raum</u> ← der Raum, <span class="a-das">das</span> Schatten<u>bild</u> ← das Bild). Die Artikel sind immer gleich eingefärbt: <span class="a-der">der</span> blau, <span class="a-die">die</span> rot, <span class="a-das">das</span> grün. Hinweise fragen nach dem Grundwort, statt die Lösung zu nennen.</p>
+</section>
+
+<section>
+  <h2>Wie die Seite entstanden ist</h2>
+  <p>Die Schattenwerkstatt ist am pädagogischen Tag entstanden, im Dialog mit dem KI-Assistenten <b>Claude</b> (Anthropic). Ausgangspunkt waren die Checkliste mit den Erfolgskriterien und die Lösungen der Stationsarbeit. Die didaktischen Entscheidungen kamen von mir; Claude hat Vorschläge gemacht, programmiert und jede Änderung im Browser getestet. In sieben Überarbeitungsrunden sind Rückmeldungen von Kolleginnen und Kollegen eingeflossen – zum Beispiel zum C-Test: Lücken ohne Abstand zum Wortrest, ein Strich pro Buchstabe, kein schwerer Einstieg. Auch der Input zum C-Test vom pädagogischen Tag wurde direkt umgesetzt.</p>
+</section>
+
+<div class="cols page2">
+  <div class="box didaktik">
+    <h2>Didaktik</h2>
+    <ul>
+      <li><b>Sprachgerüste nach Leisen:</b> Wortspeicher, Satzbausteine, Satzanfänge und Gliederung helfen beim Formulieren.</li>
+      <li><b>Gestufte Hilfe:</b> erst die Anleitung, dann „Prüfen“ (sagt, was sitzt, ohne die Lösung zu verraten), dann „Tipp“.</li>
+      <li><b>Fehlvorstellungen</b> werden gezielt aufgegriffen, z. B. „Der Schatten ist am Rand dünner“ oder „Ein Schatten ist ein Ding“.</li>
+      <li><b>Physik und Sprache verbunden:</b> Die Simulation zeigt, warum der Rand unscharf wird (ausgedehnte Lichtquelle = viele Lichtpunkte). Die Lernenden bringen die Erklärung danach in die richtige Reihenfolge. Das bereitet die Finsternisse vor.</li>
+      <li><b>Schreiben als Prozess:</b> Text schreiben, Rückmeldung holen, überarbeiten.</li>
+      <li><b>Diagnose:</b> Selbsteinschätzung zu Beginn, Abgleich in „Mein Stand“, Sprach-Check als C-Test mit getrennter Auswertung für Artikel und Fachbegriffe.</li>
+    </ul>
+  </div>
+  <div class="box technik">
+    <h2>Technik</h2>
+    <ul>
+      <li><b>Eine einzige HTML-Datei</b> mit HTML, CSS und JavaScript, ohne Frameworks und ohne eigenen Server.</li>
+      <li><b>Simulationen</b> als SVG-Grafik, direkt im Browser berechnet.</li>
+      <li><b>Datenschutz:</b> Fortschritte werden nur im Browser des Geräts gespeichert (localStorage). Es werden keine Schülerdaten übertragen.</li>
+      <li><b>Hosting:</b> GitHub Pages, öffentliches Repository github.com/dnic-zz/schattenwerkstatt, versioniert mit Git.</li>
+      <li><b>Zweite Fassung als Claude-Artifact:</b> mit KI-Rückmeldung zur Schreibwerkstatt über das eigene Claude-Konto.</li>
+      <li><b>Ergebnisse:</b> Knopf „Ergebnisse kopieren“ fügt eine Tabelle ins OneNote-Kursnotizbuch ein.</li>
+      <li><b>Lesbarkeit:</b> Schrift Atkinson Hyperlegible, heller und dunkler Modus, nutzbar auf dem iPad.</li>
+      <li><b>Werkzeug:</b> Claude in der Claude-Desktop-App (Claude Code).</li>
+    </ul>
+  </div>
+  <div class="box offen">
+    <h2>Was noch nicht funktioniert</h2>
+    <ul>
+      <li><b>KI-Rückmeldung für Lernende:</b> Sie braucht ein Claude-Konto, das erst ab 18 Jahren möglich ist. Lernende erhalten stattdessen einen automatischen Selbstcheck, der nur Formmerkmale prüft (Fachbegriffe, Begründungswörter, Artikel).</li>
+      <li><b>Ergebnisse</b> kommen nicht automatisch bei der Lehrkraft an. Die Lernenden kopieren sie selbst ins Kursnotizbuch.</li>
+      <li><b>OneNote</b> zeigt die Seite nicht eingebettet an, nur als Link.</li>
+      <li><b>Speicherstand</b> gilt nur für ein Gerät.</li>
+      <li><b>Umfang:</b> Erst Block 2 und ein Teil von Block 3 sind fertig.</li>
+      <li><b>Nicht erprobt:</b> Mit einer Klasse ist das Material noch nicht getestet. Der C-Test ist nicht normiert und hat noch keine Parallelfassung.</li>
+      <li><b>Mündlichkeit</b> fehlt bisher.</li>
+    </ul>
+  </div>
+  <div class="box ausblick">
+    <h2>Ausblick</h2>
+    <ul>
+      <li><b>Erprobung</b> in der Klasse, mit C-Test vorher und nachher (Parallelfassung) und einer kurzen Befragung.</li>
+      <li><b>Weitere Blöcke:</b> Lichtausbreitung (Block 1), Tag und Nacht, Mondphasen und Finsternisse (Block 4) im gleichen Aufbau.</li>
+      <li><b>Sprechanlässe:</b> Partnererklärungen mit Satzbausteinen im Unterricht.</li>
+      <li><b>Hilfen schrittweise abbauen</b>, damit die Lernenden zunehmend selbstständig formulieren.</li>
+      <li><b>Anmeldung mit dem Microsoft-Schulkonto:</b> Ergebnisse könnten automatisch in einer SharePoint-Liste der Klasse landen. Dafür wäre die Schul-IT nötig.</li>
+      <li><b>KI-Rückmeldung datenschutzkonform</b> über eine von der Schule freigegebene Lösung.</li>
+      <li><b>Bauplan für andere Fächer:</b> Mit einer Checkliste mit Erfolgskriterien lässt sich dieselbe Struktur auch für Biologie, Chemie oder Erdkunde erstellen.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="foot">Grundlagen: Checkliste „Licht und Schatten“ (Erfolgskriterien, Selbsteinschätzung); Stationsarbeit nach J. Day-Betschelt, <i>Physik an Stationen Spezial: Optik</i> (Auer); sprachsensibler Fachunterricht nach Josef Leisen. Quelltext: github.com/dnic-zz/schattenwerkstatt</div>
+
+</body>
+</html>
