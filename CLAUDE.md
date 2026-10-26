@@ -39,7 +39,9 @@ Nach jeder Änderung an der Quelle: `./build.sh`, dann das Artifact neu veröffe
 ## Stand
 
 - Block 2 (K4–K7, Schatten und ihre Eigenschaften) fertig: Artikel-Detektiv, Übungen 1–4, Schreibwerkstatt, Sprach-Check, Mein Stand.
-- Offen: Block 1 (K1–K3, Lichtausbreitung und Lichtquellen), Block 3 (K8–K9, Kern- und Halbschatten), Block 4 (K10–K13, Tag/Nacht, Mondphasen, Finsternisse).
+- Block 3 begonnen: Übung 5 (K8) mit Lampen-Regler Punktlampe → zwei Lampen → breite Lampe. Kernidee: Eine breite Lampe (und die Sonne) wirkt wie viele Punktlampen; daher Halbschatten und unscharfer Rand. Diese Linie führt zu den Finsternissen in Block 4.
+- Offen: Block 1 (K1–K3), K9 aus Block 3, Block 4 (K10–K13, Tag/Nacht, Mondphasen, Finsternisse).
+- Offen in Block 2: Die Simulation in Übung 3 zeigt schon zwei Grautöne (Kern- und Halbschatten), ohne die Begriffe einzuführen. Mit dem Nutzer klären, ob sie vereinfacht wird.
 
 ## Versionen
 

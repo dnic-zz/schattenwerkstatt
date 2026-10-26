@@ -24,6 +24,7 @@
   --lamp-soft: #fff0c8;
   --shade: #2a3242;
   --screen: #e9edf3;
+  --light-area: #fff3d4;
   --ok: #23804a;
   --ok-soft: #dff3e6;
   --warn: #b35f0c;
@@ -44,7 +45,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #10141c; --surface: #191f2b; --ink: #e6eaf1; --muted: #9ba6b8; --line: #2b3343;
-    --lamp: #f2b33d; --lamp-ink: #f6c766; --lamp-soft: #3b2f15; --shade: #05070b; --screen: #283041;
+    --lamp: #f2b33d; --lamp-ink: #f6c766; --lamp-soft: #3b2f15; --shade: #05070b; --screen: #46536b; --light-area: #5a4a22;
     --ok: #5cc483; --ok-soft: #173525; --warn: #f0a050; --warn-soft: #3d2914;
     --tip: #b48cf5; --tip-soft: #2c2142; --afb1: #e8bb2a; --afb2: #ef6a5f; --afb3: #6c9cf0;
     --der: #7aa6f5; --die: #f2776e; --das: #5cc483;
@@ -53,7 +54,7 @@
 }
 :root[data-theme="dark"] {
   --bg: #10141c; --surface: #191f2b; --ink: #e6eaf1; --muted: #9ba6b8; --line: #2b3343;
-  --lamp: #f2b33d; --lamp-ink: #f6c766; --lamp-soft: #3b2f15; --shade: #05070b; --screen: #283041;
+  --lamp: #f2b33d; --lamp-ink: #f6c766; --lamp-soft: #3b2f15; --shade: #05070b; --screen: #46536b; --light-area: #5a4a22;
   --ok: #5cc483; --ok-soft: #173525; --warn: #f0a050; --warn-soft: #3d2914;
   --tip: #b48cf5; --tip-soft: #2c2142; --afb1: #e8bb2a; --afb2: #ef6a5f; --afb3: #6c9cf0;
   --der: #7aa6f5; --die: #f2776e; --das: #5cc483;
@@ -269,7 +270,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
 
 <header class="hero">
   <div>
-    <div class="kicker">Licht und Schatten · Block 2</div>
+    <div class="kicker">Licht und Schatten · Block 2 und 3</div>
     <h1>Schattenwerkstatt</h1>
     <p class="lead">Wir lernen, Schatten und ihre Eigenschaften zu verstehen und zu untersuchen. Übe die vier Aufgaben, schreibe dann einen eigenen Text und hol dir eine Rückmeldung. Am Ende siehst du, was schon sitzt.</p>
   </div>
@@ -424,9 +425,56 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   <div id="a4fb"></div>
 </section>
 
+<!-- A5 Kern- und Halbschatten (Block 3) -->
+<section class="card" id="a5">
+  <div class="card-head"><h2>5 · Kernschatten und Halbschatten</h2><span class="tag afb2">AFB II</span><span class="kchip">K8</span><span class="kchip">Block 3</span></div>
+  <p class="goal"><b>Ich kann</b> Kernschatten und Halbschatten bei mehreren Lichtquellen unterscheiden.</p>
+  <p class="instr"><b>Untersuche:</b> Stelle den Regler nacheinander auf <i>Punktlampe</i>, <i>zwei Lampen</i> und <i>breite Lampe</i>. Vergleiche jedes Mal das Schattenbild auf der Leinwand. Mit „Randstrahlen zeigen“ siehst du, wie das Licht jeder Lampe am Gegenstand vorbeigeht.<br>
+    Neue Wörter: <b class="a-der">der</b> Kern<u>schatten</u>, <b class="a-der">der</b> Halb<u>schatten</u> – beide von <i>der Schatten</i>.</p>
+  <div class="fig">
+    <svg viewBox="0 0 600 260" id="a5svg" role="img" aria-label="Simulation: Lampe, Gegenstand und Leinwand mit Kern- und Halbschatten">
+      <rect x="50" y="0" width="510" height="260" fill="var(--light-area)"/>
+      <g id="a5shadows"></g>
+      <g id="a5rays"></g>
+      <rect x="244" y="105" width="12" height="50" rx="2" fill="var(--ink)"/>
+      <g id="a5screen"></g>
+      <g id="a5lamps"></g>
+      <g id="a5marks"></g>
+      <text x="569" y="254" text-anchor="middle" font-size="12" style="fill:var(--muted)">Leinwand</text>
+    </svg>
+  </div>
+  <div class="sim-controls">
+    <label for="a5mode">Lampe</label>
+    <span class="meta" id="a5modeName"></span>
+    <input type="range" id="a5mode" min="0" max="2" step="1" value="0" aria-describedby="a5modeName">
+  </div>
+  <label class="meta" for="a5raysOn"><input type="checkbox" id="a5raysOn"> Randstrahlen zeigen</label>
+
+  <h3>a) Beschrifte die Leinwand</h3>
+  <p class="goal">Stelle dafür den Regler auf <i>zwei Lampen</i>. Was liegt bei A, B, C und D?</p>
+  <div class="label-grid" id="a5labels"></div>
+
+  <h3>b) Satzbaukasten: Warum wird der Rand unscharf?</h3>
+  <p class="builder">Der Rand des Schattenbilds ist unscharf, weil
+    <select id="c1" aria-label="Ursache"><option value="">…</option><option>die Lampe eine Fläche hat</option><option>die Lampe sehr hell ist</option><option>der Gegenstand Licht durchlässt</option></select>.
+    Jeder Punkt der Lampe wirft
+    <select id="c2" aria-label="Schatten je Punkt"><option value="">…</option><option>einen eigenen Schatten</option><option>keinen Schatten</option></select>.
+    Im Kernschatten kommt
+    <select id="c3" aria-label="Licht im Kernschatten"><option value="">…</option><option>kein Licht</option><option>Licht von einem Teil der Lampe</option></select>
+    an, im Halbschatten kommt
+    <select id="c4" aria-label="Licht im Halbschatten"><option value="">…</option><option>kein Licht</option><option>Licht von einem Teil der Lampe</option></select>
+    an.
+  </p>
+
+  <h3>c) Und bei der Sonne?</h3>
+  <div class="mc" id="a5mc"></div>
+  <div class="actions"><button class="btn" id="a5check">Prüfen</button><button class="btn tip" id="a5tip">Tipp</button></div>
+  <div id="a5fb"></div>
+</section>
+
 <!-- Schreibwerkstatt -->
 <section class="card" id="schreiben">
-  <div class="card-head"><h2>5 · Schreibwerkstatt</h2><span class="tag afb3">AFB II–III</span><span class="kchip">K4 · K5 · K6</span></div>
+  <div class="card-head"><h2>6 · Schreibwerkstatt</h2><span class="tag afb3">AFB II–III</span><span class="kchip">K4 · K5 · K6</span></div>
   <p class="goal">Jetzt erklärst du selbst. Wähle eine Aufgabe, schreibe deinen Text und hol dir eine Rückmeldung von der KI. Danach überarbeitest du deinen Text.</p>
   <div class="tasks" id="tasks"></div>
   <div class="helps"><span class="lbl">Hilfen zuschalten:</span>
@@ -476,7 +524,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
 
 <!-- Sprach-Check (C-Test) -->
 <section class="card" id="sprachcheck">
-  <div class="card-head"><h2>6 · Sprach-Check</h2><span class="kchip">Fachsprache</span></div>
+  <div class="card-head"><h2>7 · Sprach-Check</h2><span class="kchip">Fachsprache</span></div>
   <p class="goal"><b>Ich kann</b> Texte über Schatten lesen und fehlende Wortteile ergänzen.</p>
   <p class="instr"><b>So geht’s:</b> In den Texten fehlen Teile von Wörtern. Jeder Strich steht für einen Buchstaben. Lies erst den ganzen Text, dann ergänze. Ist eine Lücke voll, springst du automatisch zur nächsten. In Text 1 fehlt das Ende eines Wortes, in Text 2 der Anfang – das ist schwerer.</p>
   <p class="ctexample"><b>Beispiel</b> – Text 1: Die Lam<span class="ctdemo">pe</span> leuchtet hell. · Text 2: Die <span class="ctdemo">Lam</span>pe leuchtet hell.</p>
@@ -495,7 +543,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
 </section>
 
 <footer>
-  <span>Prototyp · Block 2 von 4 · Die KI-Rückmeldung kann sich irren. Frag im Zweifel nach.</span>
+  <span>Prototyp · Block 2 und Teil von Block 3 · Die KI-Rückmeldung kann sich irren. Frag im Zweifel nach.</span>
   <button class="btn ghost" id="resetAll">Alles zurücksetzen</button>
 </footer>
 <div id="resetConfirm" hidden class="fb warn">Wirklich alles löschen? Deine Antworten und dein Text gehen verloren.
@@ -522,7 +570,7 @@ const svgEl = (tag, attrs) => { const e = document.createElementNS(SVGNS, tag); 
 
 /* ---------- Zustand ---------- */
 const KEY = "schattenwerkstatt-v4";
-const blank = () => ({ self: {}, res: {}, ad: {}, ct: {}, ctTips: {}, ctList: {}, ctFirst: null, a1: [], a2l: {}, a2s: {}, a3b: {}, a3mc: {}, a4: {}, task: null, essay: "", v1: null, fb1: null, fb2: null });
+const blank = () => ({ self: {}, res: {}, ad: {}, ct: {}, ctTips: {}, ctList: {}, ctFirst: null, a1: [], a2l: {}, a2s: {}, a3b: {}, a3mc: {}, a4: {}, a5: {}, task: null, essay: "", v1: null, fb1: null, fb2: null });
 let S = blank();
 try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(blank(), JSON.parse(raw)); } catch (e) {}
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
@@ -532,6 +580,7 @@ const CRIT = [
   { id: "K5", text: "Ich kann die Begriffe Schattenraum und Schattenbild unterscheiden.", task: "a2", mat: "🔬 Station 1" },
   { id: "K6", text: "Ich kann die Größe von Schattenbildern in Abhängigkeit vom Abstand erklären.", task: "a3", mat: "🔬 Station 1" },
   { id: "K7", text: "Ich kann Strahlengänge bei der Schattenbildung konstruieren.", task: "a4", mat: "🔬 Station 2" },
+  { id: "K8", text: "Ich kann Kernschatten und Halbschatten bei mehreren Lichtquellen unterscheiden.", task: "a5", mat: "🔬 Station 3, 📚 S. 152–153" },
 ];
 // Vier Stufen ohne Mitte, damit sich jede und jeder für eine Richtung entscheidet
 const FACES = ["😞", "😐", "😃", "😁"];
@@ -953,6 +1002,95 @@ $("#a4tip").onclick = () => {
 };
 $("#a4reset").onclick = () => { S.a4.h = A4.start.map(p => ({ ...p })); save(); drawA4(); showFb("#a4fb"); };
 
+/* ---------- A5 Kern- und Halbschatten (Block 3) ---------- */
+// Eine breite Lampe wirkt wie viele Punktlampen: Jeder Punkt wirft seinen eigenen Schatten.
+// Wo kein Punkt hinleuchtet, ist Kernschatten; wo nur ein Teil hinleuchtet, Halbschatten.
+const A5 = {
+  Lx: 50, Ox: 250, top: 105, bot: 155, Sx: 560,
+  modes: [
+    { name: "Punktlampe", ys: [130] },
+    { name: "Zwei Lampen", ys: [110, 150] },
+    { name: "Breite Lampe (wie viele Punkte)", ys: Array.from({ length: 15 }, (_, i) => 110 + i * 40 / 14) },
+  ],
+  marks: [["A", 60], ["B", 130], ["C", 195], ["D", 243]],
+  ans: { A: "Halbschatten", B: "Kernschatten", C: "Halbschatten", D: "voll beleuchtet" },
+  sent: { c1: "die Lampe eine Fläche hat", c2: "einen eigenen Schatten", c3: "kein Licht", c4: "Licht von einem Teil der Lampe" },
+  mc: { q: "Bei einer Sonnenfinsternis hat der Schatten des Mondes einen Kernschatten und einen Halbschatten. Warum?", o: [
+    ["Die Sonne ist sehr groß. Sie wirkt wie viele Lichtquellen nebeneinander.", true, "Genau: Die Sonne ist eine breite Lichtquelle – wie die breite Lampe in der Simulation."],
+    ["Es gibt zwei Sonnen, so wie in Station 3 zwei Lampen.", false, "Es gibt nur eine Sonne. Überlege: Was hat die breite Lampe mit den zwei Lampen gemeinsam?"],
+    ["Der Mond lässt etwas Licht durch.", false, "Der Mond ist lichtundurchlässig. Der Halbschatten entsteht durch die Lichtquelle, nicht durch den Gegenstand."],
+  ] },
+};
+const a5proj = (sy, y) => sy + (y - sy) * (A5.Sx - A5.Lx) / (A5.Ox - A5.Lx);
+const A5_COLORS = ["var(--lamp)", "var(--tip)"];
+function drawA5() {
+  const mode = +$("#a5mode").value, ys = A5.modes[mode].ys, n = ys.length;
+  $("#a5modeName").textContent = A5.modes[mode].name;
+  // Schatten jeder einzelnen Lampe halb durchsichtig übereinander: wo sich alle decken, wird es am dunkelsten
+  const alpha = n === 1 ? 0.55 : n === 2 ? 0.35 : 0.12;
+  const sh = $("#a5shadows"); sh.replaceChildren();
+  ys.forEach(sy => sh.append(svgEl("polygon", { points: `${A5.Ox},${A5.top} ${A5.Sx},${a5proj(sy, A5.top)} ${A5.Sx},${a5proj(sy, A5.bot)} ${A5.Ox},${A5.bot}`, fill: "var(--shade)", opacity: alpha })));
+  // Leinwand: Helligkeit = Anteil der Lampenpunkte, die diese Stelle erreichen
+  const scr = $("#a5screen"); scr.replaceChildren(svgEl("rect", { x: 556, y: 0, width: 14, height: 260, fill: "var(--screen)", stroke: "var(--muted)" }));
+  for (let y = 0; y < 260; y += 2) {
+    const blocked = ys.filter(sy => y + 1 >= a5proj(sy, A5.top) && y + 1 <= a5proj(sy, A5.bot)).length;
+    if (blocked) scr.append(svgEl("rect", { x: 556, y, width: 14, height: 2, fill: "var(--shade)", opacity: (0.95 * blocked / n).toFixed(3) }));
+  }
+  const rays = $("#a5rays"); rays.replaceChildren();
+  if ($("#a5raysOn").checked) {
+    const show = n > 2 ? [ys[0], ys[n - 1]] : ys;
+    show.forEach((sy, i) => [A5.top, A5.bot].forEach(edge => rays.append(svgEl("line", { x1: A5.Lx, y1: sy, x2: A5.Sx, y2: a5proj(sy, edge), stroke: A5_COLORS[i % 2], "stroke-width": 1.8, "stroke-dasharray": "6 4" }))));
+  }
+  const lamps = $("#a5lamps"); lamps.replaceChildren();
+  if (n > 2) lamps.append(svgEl("rect", { x: 42, y: 104, width: 16, height: 52, rx: 4, fill: "var(--lamp)", opacity: 0.45 }));
+  ys.forEach((sy, i) => lamps.append(svgEl("circle", { cx: A5.Lx, cy: sy, r: n > 2 ? 2.4 : 6, fill: n === 2 ? A5_COLORS[i] : "var(--lamp)", stroke: "var(--ink)", "stroke-width": n > 2 ? 0.6 : 1.5 })));
+  const marks = $("#a5marks"); marks.replaceChildren();
+  A5.marks.forEach(([m, y]) => {
+    marks.append(svgEl("circle", { cx: 536, cy: y, r: 11, fill: "var(--ink)" }));
+    const t = svgEl("text", { x: 536, y: y + 5, "text-anchor": "middle", "font-size": 13, "font-weight": 700, style: "fill:var(--surface)" }); t.textContent = m; marks.append(t);
+  });
+}
+$("#a5mode").addEventListener("input", drawA5);
+$("#a5raysOn").addEventListener("change", drawA5);
+function renderA5() {
+  S.a5 = S.a5 || {};
+  const g = $("#a5labels"); g.replaceChildren();
+  A5.marks.forEach(([m]) => {
+    const sel = el("select", { id: "a5sel" + m, "aria-label": "Bereich " + m, onchange: e => { S.a5[m] = e.target.value; e.target.className = ""; save(); } },
+      el("option", { value: "" }, "Bereich wählen …"), ...["Kernschatten", "Halbschatten", "voll beleuchtet"].map(o => el("option", {}, o)));
+    sel.value = S.a5[m] || "";
+    g.append(el("label", {}, el("span", { class: "badge" }, m), sel));
+  });
+  Object.keys(A5.sent).forEach(id => { const s = $("#" + id); s.value = S.a5[id] || ""; s.onchange = () => { S.a5[id] = s.value; s.className = ""; save(); }; });
+  const fs = el("fieldset", {}, el("legend", {}, A5.mc.q));
+  A5.mc.o.forEach(([txt], oi) => {
+    const inp = el("input", { type: "radio", name: "a5q", id: "a5o" + oi, value: oi });
+    if (S.a5.mc === oi) inp.checked = true;
+    inp.onchange = () => { S.a5.mc = oi; save(); fs.querySelectorAll("label").forEach(l => l.className = ""); };
+    fs.append(el("label", { for: "a5o" + oi }, inp, el("span", {}, txt)));
+  });
+  $("#a5mc").replaceChildren(fs);
+  drawA5();
+}
+$("#a5check").onclick = () => {
+  let r = 0; const msgs = [];
+  let lr = 0;
+  A5.marks.forEach(([m]) => { const s = $("#a5sel" + m), v = S.a5[m]; s.className = v ? (v === A5.ans[m] ? "right" : "wrong") : ""; if (v === A5.ans[m]) lr++; });
+  r += lr;
+  if (lr < 4) msgs.push(`Leinwand: ${lr} von 4 Bereichen sitzen.` + (S.a5.B === "Halbschatten" || S.a5.A === "Kernschatten" ? " Wo ist es am dunkelsten?" : ""));
+  let sr = 0;
+  Object.entries(A5.sent).forEach(([id, a]) => { const s = $("#" + id), v = S.a5[id]; s.className = v ? (v === a ? "right" : "wrong") : ""; if (v === a) sr++; });
+  r += sr;
+  if (sr < 4) msgs.push(`Satzbaukasten: ${sr} von 4 Teilen sitzen.`);
+  const labels = document.querySelectorAll("#a5mc label"); labels.forEach(l => l.className = "");
+  if (S.a5.mc == null) msgs.push("Frage c: noch keine Antwort.");
+  else { const [, ok, why] = A5.mc.o[S.a5.mc]; labels[S.a5.mc].className = ok ? "right" : "wrong"; if (ok) r++; else msgs.push("Frage c: " + why); }
+  setRes("a5", r / 9);
+  if (r === 9) showFb("#a5fb", "ok", "<strong>Alles sitzt.</strong> Du kannst erklären, wie Kern- und Halbschatten entstehen – und warum eine große Lichtquelle wie die Sonne einen unscharfen Rand macht.");
+  else showFb("#a5fb", "warn", `<strong>${r} von 9 sitzen.</strong><ul>${msgs.map(m => "<li>" + m + "</li>").join("")}</ul>`);
+};
+$("#a5tip").onclick = () => showFb("#a5fb", "tipbox", "<strong>Tipp:</strong> Stelle den Regler auf <i>zwei Lampen</i> und schalte die Randstrahlen ein. Geh auf der Leinwand von oben nach unten und frag an jeder Stelle: Von wie vielen Lampen kommt hier Licht an? Von beiden → voll beleuchtet. Von einer → Halbschatten. Von keiner → Kernschatten.");
+
 /* ---------- Schreibwerkstatt ---------- */
 const TASKS = [
   { id: "theater", title: "Schattentheater", text: "Dein kleiner Bruder möchte ein Schattentheater spielen. Erkläre ihm in 6 bis 10 Sätzen, wie die Figuren auf der Leinwand entstehen und wie er eine Figur groß oder klein erscheinen lassen kann.", reader: "ein jüngerer Bruder (ca. 8 Jahre)" },
@@ -1217,7 +1355,7 @@ function renderStand() {
     }
     tb.append(el("tr", {}, el("td", { class: "knum" }, c.id), el("td", {}, c.text.replace("Ich kann ", "").replace(/\.$/, "")), td,
       el("td", {}, el("span", { class: "status " + cls }, lbl)),
-      el("td", {}, c.id === "K7" ? el("span", { class: "mat" }, "–") : el("span", { class: "status " + aiCls }, ai || "offen")),
+      el("td", {}, c.id === "K7" || c.id === "K8" ? el("span", { class: "mat" }, "–") : el("span", { class: "status " + aiCls }, ai || "offen")),
       el("td", { class: "mat" }, c.mat)));
     if (cls === "noch" || cls === "teilweise" || aiCls === "noch") todo.push(c);
   });
@@ -1237,7 +1375,7 @@ function renderStand() {
   t.append(tb);
   const nx = $("#standNext"); nx.replaceChildren();
   if (todo.length) nx.append(el("div", { class: "fb tipbox" }, el("strong", {}, "Als Nächstes: "), "Übe " + todo.map(c => c.id).join(", ") + ". Schau dir dazu " + [...new Set(todo.map(c => c.mat))].join(" und ") + " noch einmal an und wiederhole die passende Übung oben."));
-  else if (CRIT.every(c => S.res[c.task] >= 0.99)) nx.append(el("div", { class: "fb ok" }, el("strong", {}, "Stark! "), "Alle Übungen in Block 2 sitzen."));
+  else if (CRIT.every(c => S.res[c.task] >= 0.99)) nx.append(el("div", { class: "fb ok" }, el("strong", {}, "Stark! "), "Alle Übungen sitzen."));
 }
 
 /* ---------- Ergebnisse fürs Kursnotizbuch ---------- */
@@ -1326,13 +1464,13 @@ $("#resetNo").onclick = () => { $("#resetConfirm").hidden = true; };
 $("#resetYes").onclick = () => {
   S = blank(); S.a4.h = A4.start.map(p => ({ ...p })); S.a4.p = {}; save();
   $("#resetConfirm").hidden = true; essay.value = ""; a1Active = 0;
-  ["#adfb", "#a1fb", "#a2fb", "#a3fb", "#a4fb"].forEach(id => showFb(id));
+  ["#adfb", "#a1fb", "#a2fb", "#a3fb", "#a4fb", "#a5fb"].forEach(id => showFb(id));
   $("#standCopy").replaceChildren();
   initAll(); if (!sample) markNoAI();
 };
 
 function initAll() {
-  renderSelf(); renderAD(); renderCT(); renderA1(); renderA2(); renderA3(); drawSim(); drawA4(); renderTasks();
+  renderSelf(); renderAD(); renderCT(); renderA1(); renderA2(); renderA3(); drawSim(); drawA4(); renderA5(); renderTasks();
   essay.value = S.essay || ""; onEssay(); renderAI(); renderStand();
 }
 initAll();
