@@ -30,6 +30,7 @@
   --das: #1b7d45;
   --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
   --font-body: "Atkinson Hyperlegible", "Verdana", "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --radius: 10px;
 }
 @media (prefers-color-scheme: dark) {
@@ -116,14 +117,29 @@ button, select, textarea, input { font: inherit; color: inherit; }
 .ctexts { display: flex; flex-direction: column; gap: 18px; }
 .ctext h3 { font-size: 1rem; margin-bottom: 4px; }
 .ctext p { font-size: 1.08rem; line-height: 2.2; }
+.ctext .card-head h3 { flex: 1 1 auto; }
 .cw { white-space: nowrap; }
-.cw input { border: 0; border-bottom: 2px solid var(--muted); background: var(--bg); border-radius: 4px 4px 0 0; padding: 0 2px; font: inherit; letter-spacing: 0.04em; }
-.cw input::placeholder { color: var(--muted); opacity: 0.8; letter-spacing: 0.12em; }
-.cw input:focus { border-bottom-color: var(--lamp); background: var(--lamp-soft); outline: none; }
-.cw input.right { border-bottom-color: var(--ok); background: var(--ok-soft); }
-.cw input.fast { border-bottom-color: var(--lamp); background: var(--lamp-soft); }
-.cw input.wrong { border-bottom-color: var(--warn); background: var(--warn-soft); }
-.cw input.hinted { box-shadow: 0 0 0 2px var(--tip); }
+/* Lücke ohne Rand und Innenabstand direkt am Wortrest; ein Strich pro fehlendem Buchstaben (Schrift mit gleich breiten Zeichen, 1ch = 1 Buchstabe) */
+.ctin, .ctdemo { -webkit-appearance: none; appearance: none; border: 0; padding: 0; margin: 0; height: 1.45em; font: inherit; font-family: var(--font-mono); letter-spacing: 0; color: var(--ink);
+  background-color: var(--lamp-soft); background-image: linear-gradient(to right, var(--muted) 70%, transparent 0); background-size: 1ch 2px; background-repeat: repeat-x; background-position: 0 100%;
+  border-radius: 3px 3px 0 0; vertical-align: baseline; }
+.ctin:focus { outline: 2px solid var(--lamp); outline-offset: 1px; }
+.ctin.right { background-color: var(--ok-soft); }
+.ctin.fast { outline: 2px dotted var(--lamp); outline-offset: 1px; }
+.ctin.wrong { background-color: var(--warn-soft); }
+.ctin.hinted { box-shadow: 0 0 0 2px var(--tip); }
+.ctdemo { display: inline-block; height: auto; color: var(--ok); font-weight: 700; }
+.ctexample { background: var(--bg); border-radius: 8px; padding: 10px 14px; font-size: 1.02rem; line-height: 2; }
+.wordlist { display: flex; flex-wrap: wrap; gap: 6px 10px; padding: 10px 12px; border: 2px dashed var(--line); border-radius: 8px; font-size: 0.95rem; }
+.wordlist .lbl { width: 100%; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 700; }
+
+/* Artikel-Detektiv */
+.adgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; }
+.adcard { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); grid-template-rows: auto auto; gap: 4px 10px; align-items: center; padding: 10px 12px; border-radius: 8px; background: var(--bg); }
+.adcard .pic { grid-row: 1 / 3; font-size: 1.8rem; line-height: 1; text-align: center; }
+.adcard .word { font-weight: 700; font-size: 1.1rem; }
+.adcard.right { outline: 2px solid var(--ok); }
+.adcard.wrong { outline: 2px solid var(--warn); }
 
 /* A1 Lückentext */
 .cloze { font-size: 1.1rem; line-height: 2.3; }
@@ -271,14 +287,14 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   <div id="selfList"></div>
 </section>
 
-<!-- Sprach-Check (C-Test) -->
-<section class="card" id="sprachcheck">
-  <div class="card-head"><h2>Aufwärmen · Sprach-Check</h2><span class="kchip">Fachsprache</span></div>
-  <p class="goal"><b>Ich kann</b> Fachtexte über Schatten lesen und mit den richtigen Wörtern und Artikeln ergänzen.</p>
-  <p class="instr"><b>So geht’s:</b> In jedem Text fehlt bei jedem dritten Wort der Anfang. Ergänze die fehlenden Buchstaben vorne. Die Striche zeigen dir, wie viele Buchstaben fehlen. Lies erst den ganzen Text, dann fülle die Lücken. Mach den Sprach-Check am Anfang und am Ende noch einmal.</p>
-  <div class="ctexts" id="ctexts"></div>
-  <div class="actions"><button class="btn" id="ctcheck">Prüfen</button><button class="btn tip" id="cttip">Tipp</button></div>
-  <div id="ctfb"></div>
+<!-- Einstieg: Artikel-Detektiv -->
+<section class="card" id="detektiv">
+  <div class="card-head"><h2>Einstieg · Artikel-Detektiv</h2><span class="tag afb1">AFB I</span><span class="kchip">Artikel</span></div>
+  <p class="goal"><b>Ich kann</b> zu Wörtern aus dem Thema den richtigen Artikel nennen.</p>
+  <p class="instr"><b>So geht’s:</b> Sag das Wort leise mit „Da ist …“ und wähle <b class="a-der">der</b>, <b class="a-die">die</b> oder <b class="a-das">das</b>.</p>
+  <div class="adgrid" id="adList"></div>
+  <div class="actions"><button class="btn" id="adcheck">Prüfen</button><button class="btn tip" id="adtip">Tipp</button></div>
+  <div id="adfb"></div>
 </section>
 
 <!-- A1 -->
@@ -450,6 +466,15 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   <div id="aiOut"></div>
 </section>
 
+<!-- Sprach-Check (C-Test) -->
+<section class="card" id="sprachcheck">
+  <div class="card-head"><h2>6 · Sprach-Check</h2><span class="kchip">Fachsprache</span></div>
+  <p class="goal"><b>Ich kann</b> Texte über Schatten lesen und fehlende Wortteile ergänzen.</p>
+  <p class="instr"><b>So geht’s:</b> In den Texten fehlen Teile von Wörtern. Jeder Strich steht für einen Buchstaben. Lies erst den ganzen Text, dann ergänze. Ist eine Lücke voll, springst du automatisch zur nächsten. In Text 1 fehlt das Ende eines Wortes, in Text 2 der Anfang – das ist schwerer.</p>
+  <p class="ctexample"><b>Beispiel</b> – Text 1: Die Lam<span class="ctdemo">pe</span> leuchtet hell. · Text 2: Die <span class="ctdemo">Lam</span>pe leuchtet hell.</p>
+  <div class="ctexts" id="ctexts"></div>
+</section>
+
 <!-- Mein Stand -->
 <section class="card" id="stand">
   <div class="card-head"><h2>Mein Stand</h2></div>
@@ -488,8 +513,8 @@ const SVGNS = "http://www.w3.org/2000/svg";
 const svgEl = (tag, attrs) => { const e = document.createElementNS(SVGNS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
 
 /* ---------- Zustand ---------- */
-const KEY = "schattenwerkstatt-v3";
-const blank = () => ({ self: {}, res: {}, ct: {}, ctTips: {}, ctFirst: null, a1: [], a2l: {}, a2s: {}, a3b: {}, a3mc: {}, a4: {}, task: null, essay: "", v1: null, fb1: null, fb2: null });
+const KEY = "schattenwerkstatt-v4";
+const blank = () => ({ self: {}, res: {}, ad: {}, ct: {}, ctTips: {}, ctList: {}, ctFirst: null, a1: [], a2l: {}, a2s: {}, a3b: {}, a3mc: {}, a4: {}, task: null, essay: "", v1: null, fb1: null, fb2: null });
 let S = blank();
 try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(blank(), JSON.parse(raw)); } catch (e) {}
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
@@ -521,27 +546,26 @@ function showFb(id, kind, html) { const b = $(id); b.replaceChildren(); if (!htm
 function setRes(task, score) { S.res[task] = score; save(); renderStand(); }
 
 /* ---------- Sprach-Check (C-Test) ---------- */
-// Regel: erster Satz bleibt ganz; ab dem 2. Satz fehlt bei jedem dritten Wort die vordere Hälfte
-// (bei ungerader Länge die größere Hälfte). Ein-Buchstaben-Wörter zählen nicht.
+// Regel: erster Satz bleibt ganz; ab dem 2. Satz ist jedes dritte Wort beschädigt. Ein-Buchstaben-Wörter zählen nicht.
+// Text 1 (Alltagssprache) verliert das Ende (die größere Hälfte), Text 2 (Fachsprache) den Anfang – das ist schwerer.
 const CT_TEXTS = [
-  { title: "Wie ein Schatten entsteht", text: "Ein Schatten entsteht, wenn Licht auf einen lichtundurchlässigen Gegenstand fällt. Hinter dem Gegenstand entsteht ein Bereich, in den kein Licht gelangt. Diesen Bereich nennt man den Schattenraum. Trifft der Schattenraum auf eine Wand, sieht man dort das Schattenbild." },
-  { title: "Randstrahlen", text: "Licht breitet sich von der Lichtquelle geradlinig aus. Das kann man mit Lichtstrahlen zeichnen. Ein Randstrahl geht genau an der Kante vorbei. Alle Punkte zwischen den Randstrahlen sind beleuchtet. Die Punkte außerhalb liegen im Schatten." },
-  { title: "Schattentheater", text: "Beim Schattentheater sitzen die Zuschauer vor einer Leinwand. Hinter der Leinwand steht eine Lampe. Je näher eine Figur an der Lampe ist, desto größer wird ihr Schattenbild. Ihr Rand wird dabei unscharf." },
+  { title: "Text 1 · Im Schulhof", level: "Stufe 1: Das Ende fehlt", front: false, text: "Am Nachmittag scheint die Sonne auf den Schulhof. Lena steht neben einem großen Baum und schaut auf den Boden. Dort sieht sie einen dunklen Fleck, der genauso aussieht wie der Baum. Wenn eine Wolke vor die Sonne zieht, wird der Fleck blass." },
+  { title: "Text 2 · Wie ein Schatten entsteht", level: "Stufe 2: Der Anfang fehlt", front: true, text: "Ein Schatten entsteht, wenn Licht auf einen lichtundurchlässigen Gegenstand fällt. Hinter dem Gegenstand entsteht ein Bereich, in den kein Licht gelangt. Diesen Bereich nennt man den Schattenraum. Trifft der Schattenraum auf eine Wand, sieht man dort das Schattenbild." },
 ];
 const CT_ART = new Set(["der", "die", "das", "dem", "den", "des", "ein", "eine", "einen", "einem", "einer", "eines", "im"]);
 const CT_FACH = new Set(["Schattenraum", "Schattenbild", "Lichtquelle", "Lichtstrahlen", "Randstrahl", "Randstrahlen", "Lampe", "Leinwand", "Schatten", "Gegenstand", "Bereich", "Kante", "beleuchtet", "unscharf", "größer", "Licht"]);
-const CT = CT_TEXTS.map(({ title, text }) => {
+const CT = CT_TEXTS.map(({ title, level, front, text }) => {
   const [, first, rest] = text.match(/^(.*?[.!?])\s+([\s\S]*)$/);
   const parts = [first + " "]; let n = 0;
   rest.split(/(\p{L}+)/u).forEach(tok => {
     if (!tok) return;
     if (!/^\p{L}+$/u.test(tok) || tok.length < 2) { parts.push(tok); return; }
     if (n++ % 3 !== 2) { parts.push(tok); return; }
-    const cut = Math.ceil(tok.length / 2);
-    parts.push({ miss: tok.slice(0, cut), keep: tok.slice(cut), word: tok,
+    const cut = front ? Math.ceil(tok.length / 2) : Math.floor(tok.length / 2);
+    parts.push({ front, miss: front ? tok.slice(0, cut) : tok.slice(cut), keep: front ? tok.slice(cut) : tok.slice(0, cut), word: tok,
       cat: CT_ART.has(tok.toLowerCase()) ? "art" : CT_FACH.has(tok) ? "fach" : "wort" });
   });
-  return { title, parts };
+  return { title, level, parts };
 });
 const ctGaps = () => CT.flatMap((t, ti) => t.parts.map((p, pi) => typeof p === "string" ? null : { ...p, key: ti + "-" + pi }).filter(Boolean));
 const ctNorm = s => s.trim().toLowerCase().replace(/ß/g, "ss");
@@ -552,9 +576,9 @@ function lev(a, b) {
     d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
   return d[a.length][b.length];
 }
-// Ein Tipp deckt den letzten fehlenden Buchstaben vor dem sichtbaren Wortende auf
+// Ein Tipp deckt den fehlenden Buchstaben auf, der direkt am sichtbaren Wortteil liegt
 const ctShown = g => Math.min(S.ctTips[g.key] || 0, g.miss.length - 1);
-const ctExpect = g => g.miss.slice(0, g.miss.length - ctShown(g));
+const ctExpect = g => g.front ? g.miss.slice(0, g.miss.length - ctShown(g)) : g.miss.slice(ctShown(g));
 function ctGrade(g) {
   const v = ctNorm(S.ct[g.key] || ""), m = ctNorm(ctExpect(g));
   if (!v) return "empty";
@@ -568,45 +592,94 @@ function renderCT() {
     const p = el("p");
     t.parts.forEach((part, pi) => {
       if (typeof part === "string") { p.append(part); return; }
-      const key = ti + "-" + pi, rest = ctExpect({ ...part, key }).length;
-      const shown = part.miss.slice(rest) + part.keep;
-      const inp = el("input", { id: "ct-" + key, type: "text", autocomplete: "off", autocapitalize: "off", spellcheck: "false", autocorrect: "off",
-        "aria-label": `Lücke: ${rest} fehlende Buchstaben vor „${shown}“`, style: `width:${rest + 1.6}ch` });
-      inp.value = S.ct[key] || ""; inp.placeholder = "_".repeat(rest);
-      inp.addEventListener("input", () => { S.ct[key] = inp.value; inp.className = ""; save(); });
-      p.append(el("span", { class: "cw" }, inp, shown));
+      const key = ti + "-" + pi, k = ctShown({ ...part, key }), rest = part.miss.length - k;
+      const before = part.front ? "" : part.keep + part.miss.slice(0, k);
+      const after = part.front ? part.miss.slice(rest) + part.keep : "";
+      const inp = el("input", { id: "ct-" + key, class: "ctin", type: "text", maxlength: String(rest), autocomplete: "off", autocapitalize: "off", spellcheck: "false", autocorrect: "off",
+        "aria-label": `Lücke mit ${rest} Buchstaben${before ? " nach „" + before + "“" : ""}${after ? " vor „" + after + "“" : ""}`, style: `width:${rest}ch` });
+      inp.value = S.ct[key] || "";
+      inp.addEventListener("input", () => {
+        S.ct[key] = inp.value; inp.className = "ctin"; save();
+        if (inp.value.length >= rest) { const all = [...document.querySelectorAll("#ctexts .ctin")]; all[all.indexOf(inp) + 1]?.focus(); }
+      });
+      p.append(el("span", { class: "cw" }, before, inp, after));
     });
-    box.append(el("div", { class: "ctext" }, el("h3", {}, t.title), p));
+    const list = el("div", { id: "ctlist-" + ti });
+    const actions = el("div", { class: "actions" },
+      el("button", { class: "btn", onclick: () => checkCT(ti) }, "Prüfen"),
+      el("button", { class: "btn tip", onclick: () => tipCT(ti) }, "Tipp"),
+      el("button", { class: "btn ghost", onclick: () => { S.ctList = S.ctList || {}; S.ctList[ti] = true; save(); renderList(ti); renderStand(); } }, "Wortliste zeigen"));
+    box.append(el("div", { class: "ctext" }, el("div", { class: "card-head" }, el("h3", {}, t.title), el("span", { class: "kchip" }, t.level)), p, list, actions, el("div", { id: "ctfb-" + ti })));
+    renderList(ti);
   });
 }
-$("#ctcheck").onclick = () => {
-  const gs = ctGaps(), c = { right: 0, fast: 0, wrong: 0, empty: 0 }, cat = { art: [0, 0], fach: [0, 0] };
+// Hilfe: alle gesuchten Wörter eines Textes alphabetisch, wie ein Wortspeicher; die Nutzung wird im Ergebnis vermerkt
+function renderList(ti) {
+  const box = $("#ctlist-" + ti); box.replaceChildren();
+  if (!S.ctList?.[ti]) return;
+  const words = [...new Set(ctGaps().filter(g => g.key.startsWith(ti + "-")).map(g => g.word))].sort((a, b) => a.localeCompare(b, "de", { sensitivity: "base" }));
+  box.append(el("div", { class: "wordlist" }, el("span", { class: "lbl" }, "Diese Wörter kommen in den Lücken vor"), ...words.map(w => el("span", {}, w))));
+}
+function checkCT(ti) {
+  const c = { right: 0, fast: 0, wrong: 0, empty: 0 }, cat = { art: [0, 0], fach: [0, 0] };
+  const gs = ctGaps().filter(g => g.key.startsWith(ti + "-"));
   gs.forEach(g => {
     const r = ctGrade(g); c[r]++;
-    const inp = $("#ct-" + g.key); inp.className = r === "empty" ? "" : r;
+    $("#ct-" + g.key).className = "ctin" + (r === "empty" ? "" : " " + r);
     if (cat[g.cat]) { cat[g.cat][1]++; if (r === "right" || r === "fast") cat[g.cat][0]++; }
   });
-  const ok = c.right + c.fast, n = gs.length, score = ok / n;
-  if (S.ctFirst == null && c.empty === 0) S.ctFirst = score;
-  setRes("ct", score);
-  const m = [`Fachbegriffe: ${cat.fach[0]} von ${cat.fach[1]}`, `Artikel: ${cat.art[0]} von ${cat.art[1]}`];
-  if (c.fast) m.push(`${c.fast} Wörter sind fast richtig (gelb) – prüfe die Schreibweise.`);
+  // Gesamtwert über beide Texte; leere Lücken zählen als nicht gelöst
+  const all = ctGaps(), grades = all.map(ctGrade), okAll = grades.filter(r => r === "right" || r === "fast").length;
+  if (S.ctFirst == null && !grades.includes("empty")) S.ctFirst = okAll / all.length;
+  setRes("ct", okAll / all.length);
+  const ok = c.right + c.fast, n = gs.length, m = [];
+  if (cat.fach[1]) m.push(`Fachbegriffe: ${cat.fach[0]} von ${cat.fach[1]}`);
+  if (cat.art[1]) m.push(`Artikel: ${cat.art[0]} von ${cat.art[1]}`);
+  if (c.fast) m.push(`${c.fast} Wörter sind fast richtig (gepunktet umrandet) – prüfe die Schreibweise.`);
   if (c.empty) m.push(`${c.empty} Lücken sind noch leer.`);
-  if (ok === n) showFb("#ctfb", "ok", `<strong>Alle ${n} Wörter sitzen.</strong>${c.fast ? " Achte bei den gelben Wörtern noch auf die Schreibweise." : ""}`);
-  else showFb("#ctfb", "warn", `<strong>${ok} von ${n} Wörtern sitzen.</strong><ul>${m.map(x => "<li>" + x + "</li>").join("")}</ul>Lies die Sätze mit den orange markierten Lücken noch einmal ganz.`);
-};
-$("#cttip").onclick = () => {
-  const g = ctGaps().find(g => !["right", "fast"].includes(ctGrade(g)));
-  if (!g) { showFb("#ctfb", "ok", "Du brauchst keinen Tipp – alle Wörter sitzen."); return; }
+  const list = m.length ? `<ul>${m.map(x => "<li>" + x + "</li>").join("")}</ul>` : "";
+  if (ok === n) showFb("#ctfb-" + ti, "ok", `<strong>Alle ${n} Wörter sitzen.</strong>${list}`);
+  else showFb("#ctfb-" + ti, "warn", `<strong>${ok} von ${n} Wörtern sitzen.</strong>${list}Lies die Sätze mit den orange markierten Lücken noch einmal ganz.`);
+}
+function tipCT(ti) {
+  const g = ctGaps().filter(g => g.key.startsWith(ti + "-")).find(g => !["right", "fast"].includes(ctGrade(g)));
+  if (!g) { showFb("#ctfb-" + ti, "ok", "Du brauchst keinen Tipp – alle Wörter sitzen."); return; }
   const more = ctShown(g) < g.miss.length - 1;
   if (more) { S.ctTips[g.key] = (S.ctTips[g.key] || 0) + 1; S.ct[g.key] = ""; save(); }
   renderCT();
   const inp = $("#ct-" + g.key); inp.classList.add("hinted"); inp.focus();
-  const why = g.cat === "art" ? "Hier fehlt ein Artikel. Schau auf das Nomen danach: Welches Grundwort hat es? Und frag nach dem Fall: Wer? Wen? Wem? Wo?"
+  const why = g.cat === "art" ? "Hier fehlt ein Artikel. Schau auf das Nomen danach und frag: Wer? Wen? Wem? Wo?"
     : g.cat === "fach" ? "Hier fehlt ein Fachbegriff aus dem Thema. Der Wortspeicher in Übung 1 hilft dir."
     : "Lies den ganzen Satz laut. Welches Wort passt in den Satz?";
-  showFb("#ctfb", "tipbox", `<strong>Tipp zur umrandeten Lücke:</strong> ${more ? "Ein Buchstabe mehr ist jetzt aufgedeckt. " : ""}${why}`);
+  showFb("#ctfb-" + ti, "tipbox", `<strong>Tipp zur umrandeten Lücke:</strong> ${more ? "Ein Buchstabe mehr ist jetzt aufgedeckt. " : ""}${why}`);
+}
+
+/* ---------- Einstieg: Artikel-Detektiv ---------- */
+const AD = [["☀️", "Sonne", "die"], ["💡", "Lampe", "die"], ["🧱", "Wand", "die"], ["🌙", "Mond", "der"],
+  ["👤", "Schatten", "der"], ["🌳", "Baum", "der"], ["✨", "Licht", "das"], ["👁️", "Auge", "das"]];
+function renderAD() {
+  const box = $("#adList"); box.replaceChildren();
+  AD.forEach(([pic, word], i) => {
+    const seg = el("div", { class: "seg", role: "group", "aria-label": "Artikel für " + word });
+    ARTS.forEach(a => seg.append(el("button", { "aria-pressed": String(S.ad[i] === a), onclick: () => { S.ad[i] = a; save(); renderAD(); } }, a)));
+    const chosen = S.ad[i];
+    box.append(el("div", { class: "adcard", "data-i": i }, el("span", { class: "pic", "aria-hidden": "true" }, pic),
+      el("span", { class: "word" }, chosen ? el("span", { class: "a-" + chosen }, chosen + " ") : null, word), seg));
+  });
+}
+$("#adcheck").onclick = () => {
+  let r = 0, empty = 0;
+  document.querySelectorAll("#adList .adcard").forEach(card => {
+    const i = +card.dataset.i, v = S.ad[i];
+    card.classList.remove("right", "wrong");
+    if (!v) { empty++; return; }
+    if (v === AD[i][2]) { r++; card.classList.add("right"); } else card.classList.add("wrong");
+  });
+  setRes("ad", r / AD.length);
+  if (r === AD.length) showFb("#adfb", "ok", "<strong>Alles sitzt.</strong> Später helfen dir diese Wörter auch bei langen Wörtern: die Taschen<u>lampe</u> ← die Lampe, der Kern<u>schatten</u> ← der Schatten.");
+  else showFb("#adfb", "warn", `<strong>${r} von ${AD.length} sitzen.</strong> ${empty ? empty + " Wörter haben noch keinen Artikel. " : ""}Schau dir die orange umrandeten Wörter noch einmal an – oder hol dir einen Tipp.`);
 };
+$("#adtip").onclick = () => showFb("#adfb", "tipbox", "<strong>Tipp – die Ersatzprobe:</strong> Ersetze das Wort durch <i>er</i>, <i>sie</i> oder <i>es</i>. „<i>Sie</i> scheint hell.“ → <b class=\"a-die\">die</b> Sonne. „<i>Er</i> ist rund.“ → <b class=\"a-der\">der</b> Mond. „<i>Es</i> ist offen.“ → <b class=\"a-das\">das</b> Auge.");
 
 /* ---------- A1 Lückentext ---------- */
 const A1 = {
@@ -1113,6 +1186,12 @@ function statusFor(score) {
   if (score >= 0.6) return ["teilweise", "fast"];
   return ["noch", "noch üben"];
 }
+// Artikel: Mittel aus Artikel-Detektiv und den Artikel-Lücken in Übung 1, soweit schon geübt
+function artScore() {
+  const v = [S.res.ad, S.res.art].filter(x => x != null);
+  return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null;
+}
+const ctListNote = () => Object.keys(S.ctList || {}).length ? " · mit Wortliste" : "";
 function renderStand() {
   const t = $("#standTable"); t.replaceChildren();
   t.append(el("thead", {}, el("tr", {}, el("th", {}, ""), el("th", {}, "Ich kann …"), el("th", {}, "Einschätzung"), el("th", {}, "Übung"), el("th", {}, "Text"), el("th", {}, "Material"))));
@@ -1134,14 +1213,15 @@ function renderStand() {
       el("td", { class: "mat" }, c.mat)));
     if (cls === "noch" || cls === "teilweise" || aiCls === "noch") todo.push(c);
   });
-  const [acls, albl] = statusFor(S.res.art);
+  const [acls, albl] = statusFor(artScore());
   const aiArt = S.ai?.Artikel, aiArtCls = aiArt ? STUFE(aiArt) : "offen";
   tb.append(el("tr", {}, el("td", { class: "knum" }, "Abc"), el("td", {}, "die Artikel der Fachbegriffe richtig verwenden"), el("td", {}, "–"),
-    el("td", {}, el("span", { class: "status " + acls }, albl)), el("td", {}, el("span", { class: "status " + aiArtCls }, aiArt || "offen")), el("td", { class: "mat" }, "Merkkasten in Übung 1")));
+    el("td", {}, el("span", { class: "status " + acls }, albl)), el("td", {}, el("span", { class: "status " + aiArtCls }, aiArt || "offen")), el("td", { class: "mat" }, "Artikel-Detektiv, Merkkasten in Übung 1")));
   const ct = S.res.ct, pct = v => Math.round(v * 100) + " %";
   const [ccls, clbl] = ct == null ? ["offen", "noch nicht gemacht"] : ct >= 0.9 ? ["sitzt", pct(ct)] : ct >= 0.6 ? ["teilweise", pct(ct)] : ["noch", pct(ct)];
   const ctCell = el("td", {}, el("span", { class: "status " + ccls }, clbl));
   if (S.ctFirst != null && ct != null && ct !== S.ctFirst) ctCell.append(el("div", { class: "mirror" }, `Erster Versuch: ${pct(S.ctFirst)}`));
+  if (ctListNote()) ctCell.append(el("div", { class: "mirror" }, "mit Wortliste"));
   tb.append(el("tr", {}, el("td", { class: "knum" }, "C"), el("td", {}, "Fachtexte über Schatten lesen und ergänzen (Sprach-Check)"), el("td", {}, "–"),
     ctCell, el("td", { class: "mat" }, "–"), el("td", { class: "mat" }, "Wortspeicher in Übung 1")));
   if (ccls === "noch") todo.push({ id: "den Sprach-Check", mat: "den Wortspeicher in Übung 1" });
@@ -1165,11 +1245,11 @@ function buildResults() {
   const now = new Date();
   const when = now.toLocaleDateString("de-DE") + ", " + now.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
   const rows = CRIT.map(c => [c.id, c.text.replace("Ich kann ", "").replace(/\.$/, ""), S.self[c.id] != null ? FACES[S.self[c.id]] : "–", scoreTxt(S.res[c.task]), S.ai?.[c.id] || "–"]);
-  rows.push(["Abc", "die Artikel der Fachbegriffe richtig verwenden", "–", scoreTxt(S.res.art), S.ai?.Artikel || "–"]);
+  rows.push(["Abc", "die Artikel der Fachbegriffe richtig verwenden", "–", scoreTxt(artScore()), S.ai?.Artikel || "–"]);
   let ct = "noch nicht gemacht";
   if (S.res.ct != null) {
     const c = ctStats();
-    ct = pctTxt(S.res.ct) + (S.ctFirst != null ? ` (erster Versuch ${pctTxt(S.ctFirst)})` : "") + ` · Artikel ${c.art[0]}/${c.art[1]} · Fachbegriffe ${c.fach[0]}/${c.fach[1]}`;
+    ct = pctTxt(S.res.ct) + (S.ctFirst != null ? ` (erster Versuch ${pctTxt(S.ctFirst)})` : "") + ` · Artikel ${c.art[0]}/${c.art[1]} · Fachbegriffe ${c.fach[0]}/${c.fach[1]}` + ctListNote();
   }
   rows.push(["C", "Sprach-Check: Fachtexte ergänzen", "–", ct, "–"]);
   const head = ["", "Ich kann …", "Einschätzung", "Übung", "Text"];
@@ -1238,13 +1318,13 @@ $("#resetNo").onclick = () => { $("#resetConfirm").hidden = true; };
 $("#resetYes").onclick = () => {
   S = blank(); S.a4.h = A4.start.map(p => ({ ...p })); S.a4.p = {}; save();
   $("#resetConfirm").hidden = true; essay.value = ""; a1Active = 0;
-  ["#ctfb", "#a1fb", "#a2fb", "#a3fb", "#a4fb"].forEach(id => showFb(id));
+  ["#adfb", "#a1fb", "#a2fb", "#a3fb", "#a4fb"].forEach(id => showFb(id));
   $("#standCopy").replaceChildren();
   initAll(); if (!sample) markNoAI();
 };
 
 function initAll() {
-  renderSelf(); renderCT(); renderA1(); renderA2(); renderA3(); drawSim(); drawA4(); renderTasks();
+  renderSelf(); renderAD(); renderCT(); renderA1(); renderA2(); renderA3(); drawSim(); drawA4(); renderTasks();
   essay.value = S.essay || ""; onEssay(); renderAI(); renderStand();
 }
 initAll();

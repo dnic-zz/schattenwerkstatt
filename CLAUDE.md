@@ -33,11 +33,12 @@ Nach jeder Änderung an der Quelle: `./build.sh`, dann das Artifact neu veröffe
 - Schülertexte in Du-Form, kurze Sätze, Fachbegriffe immer mit Artikel.
 - Artikel-Schwerpunkt: Das letzte Wort (Grundwort) bestimmt den Artikel. Hinweise fragen nach dem Grundwort, nennen nie den Artikel. Farben: der blau, die rot, das grün.
 - Selbsteinschätzung mit 4 Stufen, ohne Mitte.
-- Sprach-Check als C-Test: erster Satz ganz, danach bei jedem dritten Wort der vordere Teil getilgt.
+- Leichter Einstieg (Artikel-Detektiv), der Sprach-Check (C-Test) kommt erst am Ende.
+- Sprach-Check: 2 Texte, erster Satz ganz, danach jedes dritte Wort beschädigt. Text 1 Alltagssprache, Ende getilgt (Stufe 1); Text 2 Fachsprache, Anfang getilgt (Stufe 2). Lücken ohne Abstand zum Wortrest, ein Strich pro Buchstabe, springen automatisch weiter. „Wortliste zeigen“ als Hilfe, die Nutzung wird im Ergebnis vermerkt.
 
 ## Stand
 
-- Block 2 (K4–K7, Schatten und ihre Eigenschaften) fertig: Sprach-Check, Übungen 1–4, Schreibwerkstatt, Mein Stand.
+- Block 2 (K4–K7, Schatten und ihre Eigenschaften) fertig: Artikel-Detektiv, Übungen 1–4, Schreibwerkstatt, Sprach-Check, Mein Stand.
 - Offen: Block 1 (K1–K3, Lichtausbreitung und Lichtquellen), Block 3 (K8–K9, Kern- und Halbschatten), Block 4 (K10–K13, Tag/Nacht, Mondphasen, Finsternisse).
 
 ## Versionen
