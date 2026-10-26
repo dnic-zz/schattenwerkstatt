@@ -15,7 +15,8 @@ Nach jeder Änderung an der Quelle: `./build.sh`, dann das Artifact neu veröffe
 ## Veröffentlichung
 
 - Claude-Artifact: https://claude.ai/artifact/6566VRtxdWFWS3tNFRWMDu (Freigabe „Jeder mit dem Link“). Beim Veröffentlichen aus einer neuen Sitzung `url` angeben, sonst entsteht ein neuer Link.
-- `index.html` wird als Datei weitergegeben oder an das Kursnotizbuch angehängt.
+- GitHub Pages: https://dnic-zz.github.io/schattenwerkstatt/ (Repository `github.com/dnic-zz/schattenwerkstatt`, öffentlich, Pages aus `main` /). Zeigt `index.html`, also immer `./build.sh` vor dem Commit. Ohne Claude, darum dort immer Selbstcheck statt KI.
+- `index.html` kann auch als Datei weitergegeben oder an das Kursnotizbuch angehängt werden.
 - OneNote bettet nur freigegebene Anbieter ein; Claude-Links und GitHub Pages erscheinen dort nur als Link.
 
 ## Rahmenbedingungen
@@ -43,4 +44,5 @@ Nach jeder Änderung an der Quelle: `./build.sh`, dann das Artifact neu veröffe
 
 - Jeder Schritt = ein Commit + Tag `stand-N` (fortlaufend). Commit-Nachrichten auf Deutsch, kurz, mit Stichpunkten.
 - Rückgängig machen mit `git revert`, nie mit `reset --hard`.
+- Nach jedem Schritt: `git push && git push --tags` (GitHub Pages aktualisiert sich dann nach etwa einer Minute).
 - Dokumentation nur als HTML-Seiten im Projekt, keine Word- oder Google-Dokumente.
