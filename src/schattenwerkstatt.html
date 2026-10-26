@@ -276,6 +276,10 @@ details.prev pre { white-space: pre-wrap; font-family: var(--font-body); backgro
 .status.offen { background: var(--bg); color: var(--muted); }
 .mat { color: var(--muted); font-size: 0.88rem; }
 .mirror { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+.teacher { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.teacher summary { cursor: pointer; padding: 12px 16px; font-weight: 700; color: var(--muted); }
+.teacher[open] summary { border-bottom: 1px solid var(--line); }
+.teacher-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem; max-width: 72ch; }
 footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: space-between; align-items: center; }
 @media (prefers-reduced-motion: no-preference) { .fb, .ai { animation: fade 0.25s ease-out; } }
 @keyframes fade { from { opacity: 0.4; transform: translateY(3px); } to { opacity: 1; transform: none; } }
@@ -287,7 +291,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   <div>
     <div class="kicker">Licht und Schatten · Block 2 und 3</div>
     <h1>Schattenwerkstatt</h1>
-    <p class="lead">Wir lernen, Schatten und ihre Eigenschaften zu verstehen und zu untersuchen. Übe die vier Aufgaben, schreibe dann einen eigenen Text und hol dir eine Rückmeldung. Am Ende siehst du, was schon sitzt.</p>
+    <p class="lead">Ein wichtiges Thema in Q1 war „Licht und Schatten“. Im Langtest musst du nicht nur wissen, wie Schatten entstehen, sondern es mit den richtigen Fachwörtern in ganzen Sätzen erklären und begründen. Genau das übst du hier Schritt für Schritt, mit Wortspeichern, Satzbausteinen und Tipps.</p>
   </div>
   <svg viewBox="0 0 150 110" aria-hidden="true">
     <polygon points="22,55 150,8 150,102" fill="var(--lamp-soft)"/>
@@ -297,6 +301,31 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
     <rect x="72" y="36" width="8" height="38" rx="2" fill="var(--ink)"/>
   </svg>
 </header>
+
+<details class="teacher" id="lehrkraefte">
+  <summary>Für Lehrkräfte: Ziel und Methoden</summary>
+  <div class="teacher-body">
+    <p><b>Ziel:</b> Dieses interaktive Arbeitsblatt fördert die Fachsprache zum Thema „Licht und Schatten“. Es bereitet die Schülerinnen und Schüler auf die Schreibaufgaben im Langtest vor: erklären, begründen, beschreiben.</p>
+    <p><b>Grundlage:</b> Das Material folgt dem sprachsensiblen Fachunterricht nach Josef Leisen. Fachlernen und Sprachlernen gehören zusammen. Sprachhilfen dienen als Gerüst, mit dem die Lernenden fachlich sprechen und schreiben, bevor sie es selbstständig tun.</p>
+    <div class="tablewrap"><table class="stand">
+      <thead><tr><th>Methode</th><th>Wo im Arbeitsblatt</th></tr></thead>
+      <tbody>
+        <tr><td>Wortspeicher mit Artikeln</td><td>Artikel-Detektiv, Übung 1, Schreibwerkstatt</td></tr>
+        <tr><td>Lückentext</td><td>Übung 1</td></tr>
+        <tr><td>Bild beschriften, Aussagen zuordnen</td><td>Übung 2</td></tr>
+        <tr><td>Wechsel der Darstellungsform (Simulation → Satz)</td><td>Übungen 3 und 4</td></tr>
+        <tr><td>Satzbausteine (Je-desto-Sätze)</td><td>Übung 4a</td></tr>
+        <tr><td>Satzpuzzle: Erklärung ordnen, Fehlvorstellungen aussortieren</td><td>Übung 4b</td></tr>
+        <tr><td>Satzanfänge und Gliederung als Schreibhilfe</td><td>Schreibwerkstatt</td></tr>
+        <tr><td>Schreiben als Prozess: Rückmeldung, Überarbeitung</td><td>Schreibwerkstatt</td></tr>
+        <tr><td>C-Test zur Diagnose der Fachsprache</td><td>Sprach-Check</td></tr>
+        <tr><td>Selbsteinschätzung und Abgleich mit dem Ergebnis</td><td>Start und „Mein Stand“</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>Sprachlicher Schwerpunkt Artikel:</b> Fast alle Fachbegriffe sind zusammengesetzte Nomen. Die Regel „Das letzte Wort bestimmt den Artikel“ (<b class="a-der">der</b> Schatten<u>raum</u> ← der Raum) zieht sich durch alle Übungen. Farben: <b class="a-der">der</b> blau, <b class="a-die">die</b> rot, <b class="a-das">das</b> grün.</p>
+    <p><b>Einsatz:</b> Die Bearbeitung dauert etwa 30 Minuten. Die Ergebnisse kopieren die Lernenden über „Mein Stand“ ins Kursnotizbuch. Die KI-Rückmeldung zur Schreibwerkstatt gibt es nur mit Claude-Konto; ohne Konto prüfen die Lernenden ihren Text mit einem automatischen Selbstcheck.</p>
+  </div>
+</details>
 
 <div class="legend" aria-label="Legende Anforderungsbereiche">
   <span class="afb1"><i class="dot"></i><span style="color:var(--muted)">AFB I · Grundwissen</span></span>
