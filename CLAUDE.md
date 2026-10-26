@@ -1,0 +1,46 @@
+# Schattenwerkstatt – Hinweise für Claude
+
+Sprachsensible Übungsseite (nach Leisen) zum Physikthema „Licht und Schatten“, Klasse 7, zur Vorbereitung auf einen Langtest. Grundlage sind die Checkliste mit 13 Erfolgskriterien (K1–K13) und die Stationen 1–7 (Day-Betschelt, *Physik an Stationen Spezial: Optik*).
+
+## Dateien
+
+| Pfad | Inhalt |
+| --- | --- |
+| `src/schattenwerkstatt.html` | Quelle: Seiteninhalt ohne `<html>`/`<head>`, so wie ihn das Claude-Artifact erwartet |
+| `index.html` | Gebaute eigenständige Seite (Datei-Weitergabe, GitHub Pages). Nie von Hand ändern |
+| `build.sh` | Baut `index.html` aus der Quelle |
+
+Nach jeder Änderung an der Quelle: `./build.sh`, dann das Artifact neu veröffentlichen.
+
+## Veröffentlichung
+
+- Claude-Artifact: https://claude.ai/artifact/6566VRtxdWFWS3tNFRWMDu (Freigabe „Jeder mit dem Link“). Beim Veröffentlichen aus einer neuen Sitzung `url` angeben, sonst entsteht ein neuer Link.
+- `index.html` wird als Datei weitergegeben oder an das Kursnotizbuch angehängt.
+- OneNote bettet nur freigegebene Anbieter ein; Claude-Links und GitHub Pages erscheinen dort nur als Link.
+
+## Rahmenbedingungen
+
+- Schüler sind minderjährig und haben kein Claude-Konto. Ohne Claude schaltet die Schreibwerkstatt automatisch auf den Selbstcheck um (Fachbegriffe, Begründungen, Artikel automatisch, Rest per Checkliste). Die KI-Rückmeldung (`sample`) gibt es nur für angemeldete Lehrkräfte.
+- Ergebnisse kommen über „Ergebnisse kopieren“ (Mein Stand) ins OneNote-Kursnotizbuch. Kopieren läuft synchron im Klick über eine Markierung und `execCommand("copy")`, sonst `writeText`, sonst markierte Tabelle zum Selbstkopieren.
+- Keine Schülerdaten an fremde Dienste. Eine Anmeldung mit dem Microsoft-Schulkonto (Entra ID, SharePoint-Liste) wäre möglich, braucht aber die Schul-IT.
+- Speicher nur im Browser (`localStorage`, Schlüssel `schattenwerkstatt-vN`). Ändert sich der Aufbau gespeicherter Daten, `N` erhöhen und den Nutzer darauf hinweisen, dass Fortschritte zurückgesetzt werden.
+
+## Didaktische Prinzipien
+
+- Jede Übung ist einem Erfolgskriterium und einem Anforderungsbereich zugeordnet (AFB I gelb, II rot, III blau wie in der Checkliste).
+- Gestufte Hilfe: Anleitung → „Prüfen“ (sagt, was sitzt, ohne die Lösung zu verraten) → „Tipp“.
+- Schülertexte in Du-Form, kurze Sätze, Fachbegriffe immer mit Artikel.
+- Artikel-Schwerpunkt: Das letzte Wort (Grundwort) bestimmt den Artikel. Hinweise fragen nach dem Grundwort, nennen nie den Artikel. Farben: der blau, die rot, das grün.
+- Selbsteinschätzung mit 4 Stufen, ohne Mitte.
+- Sprach-Check als C-Test: erster Satz ganz, danach bei jedem dritten Wort der vordere Teil getilgt.
+
+## Stand
+
+- Block 2 (K4–K7, Schatten und ihre Eigenschaften) fertig: Sprach-Check, Übungen 1–4, Schreibwerkstatt, Mein Stand.
+- Offen: Block 1 (K1–K3, Lichtausbreitung und Lichtquellen), Block 3 (K8–K9, Kern- und Halbschatten), Block 4 (K10–K13, Tag/Nacht, Mondphasen, Finsternisse).
+
+## Versionen
+
+- Jeder Schritt = ein Commit + Tag `stand-N` (fortlaufend). Commit-Nachrichten auf Deutsch, kurz, mit Stichpunkten.
+- Rückgängig machen mit `git revert`, nie mit `reset --hard`.
+- Dokumentation nur als HTML-Seiten im Projekt, keine Word- oder Google-Dokumente.
